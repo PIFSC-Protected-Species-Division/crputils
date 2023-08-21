@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gpx version="1.1" creator="GPS Visualizer https://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<trk>
+  <name>exampleVesselTrack_longForm</name>
+  <trkseg>
+    <trkpt lat="19.81733333" lon="-156.274"></trkpt>
+    <trkpt lat="19.75466667" lon="-156.2033333"></trkpt>
+    <trkpt lat="19.71533333" lon="-156.1568333"></trkpt>
+    <trkpt lat="19.60916522" lon="-156.0363545"></trkpt>
+    <trkpt lat="19.8265" lon="-156.1041667"></trkpt>
+    <trkpt lat="19.87666673" lon="-156.266163"></trkpt>
+    <trkpt lat="19.88233333" lon="-156.2903333"></trkpt>
+    <trkpt lat="19.91283367" lon="-156.4111492"></trkpt>
+    <trkpt lat="19.92783333" lon="-156.4755"></trkpt>
+    <trkpt lat="19.9330002" lon="-156.4954889"></trkpt>
+    <trkpt lat="19.93583333" lon="-156.5073333"></trkpt>
+    <trkpt lat="20.05616699" lon="-157.2149853"></trkpt>
+  </trkseg>
+</trk>
+</gpx>
