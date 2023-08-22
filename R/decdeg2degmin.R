@@ -5,18 +5,17 @@ decdeg2degmin <- function(decdeg){
   #' decimal degrees to degrees decimal minutes
   #'
   #' @param decdeg N-by-1 vector of coordinates in decimal degrees
-  #' e.g., 30.48667
-  #' e.g., c(30.48667, -155.61496)
+  #' e.g., decdeg = 30.48667 OR decdeg = c(30.48667, -155.61496)
   #' @usage decdeg2degmin(decdeg)
-  #' @return degmin N-by-2 data.frame of coordinates with columns 'deg' for
+  #' @return N-by-2 data.frame of coordinates with columns 'deg' for
   #' degrees and 'min' for decimal minutes
   #' @export
   #' @examples
-  #' # # single input coordinates
+  #' # single input coordinates
   #' decdeg = 30.48667
   #' degmin = decdeg2degmin(decdeg)
   #'
-  #' # # multiple input coordinates
+  #' # multiple input coordinates
   #' decdeg = c(30.48667, -155.61496)
   #' degmin = decdeg2degmin(decdeg)
   #'
