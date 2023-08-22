@@ -24,7 +24,6 @@ degmin2decdeg <- function(degmin){
   #'                    nrow = 2, ncol = 2, byrow = TRUE)
   #' decdeg = degmin2decdeg(degmin)
   #'
-  #'#######################################################################
 
 
   # set up empty output

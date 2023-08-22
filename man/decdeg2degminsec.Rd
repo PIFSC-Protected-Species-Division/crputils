@@ -27,5 +27,4 @@ degminsec = decdeg2degminsec(decdeg)
 decdeg = c(30.48667, -155.61496)
 degminsec = decdeg2degminsec(decdeg)
 
-######################################################################
 }

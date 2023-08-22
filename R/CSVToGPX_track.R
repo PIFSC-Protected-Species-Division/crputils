@@ -12,9 +12,6 @@ CSVToGPX_track = function(inCSV, outGPX){
   #' 'cruise-maps-live' repository that tries to generalize the function to
   #' convert any input data.frame, not just the output from a .das file.
   #'
-  #' author: Selene Fregosi selene.fregosi at noaa.gov
-  #' date: 28 July 2023
-  #'
   #' @param inCSV filename of csv containing track data to be processed. Must
   #' include the following columns:
   #' uid, startLat, startLon, stopLat, stopLon
@@ -25,15 +22,15 @@ CSVToGPX_track = function(inCSV, outGPX){
   #' UTC timezone for GPX output.
   #' @param outGPX fullpath filename of gpx to be written
   #' example: outGPX = './crputils/exampleData/exampleVesselTrack.gpx'
-  #'
   #' @return none, will write a file
+  #' @export
+  #'
   #' @examples
   #' inCSV = './exampleData/exampleVesselTrack.csv'
   #' outGPX = './exampleData/exampleVesselTrack.gpx'
   #' CSVToGPX_track(inCSV, outGPX)
   #'
-  #' ######################################################################
-  #'
+
 
   # read in CSV
   tdf = read.csv(inCSV)

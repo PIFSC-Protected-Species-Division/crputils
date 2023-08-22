@@ -15,25 +15,21 @@ e.g., matrix(c(30, 29, 12,
 nrow = 2, ncol = 3, byrow = TRUE)}
 }
 \value{
-decdeg  N-by-1 vector of coordinates in decimal degrees
+N-by-1 vector of coordinates in decimal degrees
 }
 \description{
 Utility to convert latitude and longitude coordinates from
 degrees minutes seconds to decimal degrees
-
-author: Selene Fregosi selene.fregosi \link{at} noaa.gov
-date: 28 July 2023
 }
 \examples{
-# # single input coordinates
+# single input coordinates
 degminsec = matrix(c(30, 29, 12), nrow = 1, ncol = 3)
 decdeg = degminsec2decdeg(degminsec)
 
-# # multiple input coordinates
-degminsec = matrix(c(30, 29, 12,        
-                     -155, 36, 53.838), 
+# multiple input coordinates
+degminsec = matrix(c(30, 29, 12,
+                     -155, 36, 53.838),
                    nrow = 2, ncol = 3, byrow = TRUE)
 decdeg = degminsec2decdeg(degminsec)
 
-######################################################################
 }

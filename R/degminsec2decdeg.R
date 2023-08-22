@@ -24,7 +24,7 @@ degminsec2decdeg <- function(degminsec){
   #'                    nrow = 2, ncol = 3, byrow = TRUE)
   #' decdeg = degminsec2decdeg(degminsec)
   #'
-  #' ######################################################################
+
 
   # set up empty output
   decdeg = matrix(nrow = nrow(degminsec), ncol = 1)

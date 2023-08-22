@@ -19,7 +19,7 @@ decdeg2degmin <- function(decdeg){
   #' decdeg = c(30.48667, -155.61496)
   #' degmin = decdeg2degmin(decdeg)
   #'
-  #' ######################################################################
+
 
   # check input type
   # if just a value, convert to matrix

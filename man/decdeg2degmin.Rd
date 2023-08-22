@@ -27,5 +27,4 @@ degmin = decdeg2degmin(decdeg)
 decdeg = c(30.48667, -155.61496)
 degmin = decdeg2degmin(decdeg)
 
-######################################################################
 }

@@ -33,15 +33,10 @@ Additional columns for cruise, date, vessel name, etc will be ignored
 This is a modified version of \code{trackToGPX.R} that is included in the
 'cruise-maps-live' repository that tries to generalize the function to
 convert any input data.frame, not just the output from a .das file.
-
-author: Selene Fregosi selene.fregosi \link{at} noaa.gov
-date: 28 July 2023
 }
 \examples{
 inCSV = './exampleData/exampleVesselTrack.csv'
 outGPX = './exampleData/exampleVesselTrack.gpx'
 CSVToGPX_track(inCSV, outGPX)
-
-######################################################################
 
 }
