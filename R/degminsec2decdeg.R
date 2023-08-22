@@ -1,37 +1,34 @@
 degminsec2decdeg <- function(degminsec){
   #' degminsec2decdeg
-  #' 
+  #'
   #' @description Utility to convert latitude and longitude coordinates from
   #' degrees minutes seconds to decimal degrees
-  #' 
-  #' author: Selene Fregosi selene.fregosi [at] noaa.gov
-  #' date: 28 July 2023
   #'
   #' @param degminsec N-by-3 matrix of coordinates with each column representing
   #' degrees, minutes, and seconds
   #' e.g., matrix(c(30, 29, 12), nrow = 1, ncol = 3)
-  #' e.g., matrix(c(30, 29, 12, 
-  #'                -155, 36, 53.838), 
+  #' e.g., matrix(c(30, 29, 12,
+  #'                -155, 36, 53.838),
   #'              nrow = 2, ncol = 3, byrow = TRUE)
   #' @usage degminsec2decdeg(degminsec)
-  #' @return decdeg  N-by-1 vector of coordinates in decimal degrees 
-  #'
+  #' @return N-by-1 vector of coordinates in decimal degrees
+  #' @export
   #' @examples
-  #' # # single input coordinates
+  #' # single input coordinates
   #' degminsec = matrix(c(30, 29, 12), nrow = 1, ncol = 3)
   #' decdeg = degminsec2decdeg(degminsec)
-  #' 
-  #' # # multiple input coordinates
-  #' degminsec = matrix(c(30, 29, 12,        
-  #'                      -155, 36, 53.838), 
+  #'
+  #' # multiple input coordinates
+  #' degminsec = matrix(c(30, 29, 12,
+  #'                      -155, 36, 53.838),
   #'                    nrow = 2, ncol = 3, byrow = TRUE)
   #' decdeg = degminsec2decdeg(degminsec)
-  #' 
+  #'
   #' ######################################################################
-  
-  # set up empty output 
+
+  # set up empty output
   decdeg = matrix(nrow = nrow(degminsec), ncol = 1)
-  
+
   # loop through inputs and convert
   for (f in 1:nrow(degminsec)){
     secDec = degminsec[f,3]/60
@@ -43,6 +40,6 @@ degminsec2decdeg <- function(degminsec){
       decdeg[f,1] = deg - dec
     }
   }
-  
+
   return(decdeg)
 }
