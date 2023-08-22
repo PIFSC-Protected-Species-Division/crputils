@@ -5,28 +5,24 @@ CSVToGPX_track = function(inCSV, outGPX){
   #'
   #' The input data.frame must have 1 column 'uid' containing a unique
   #' identifier for that track/segment, 2 columns for start latitude and
-  #' longitude, and 2 columns for end latitude and longitude.
+  #' longitude, and 2 columns for stop latitude and longitude.
   #' Additional columns for cruise, date, vessel name, etc will be ignored
   #'
   #' This is a modified version of `trackToGPX.R` that is included in the
   #' 'cruise-maps-live' repository that tries to generalize the function to
   #' convert any input data.frame, not just the output from a .das file.
   #'
-  #' This requires the lubridate package. Most people have this installed as
-  #' part of the tidyverse packages, but if not, install using
-  #' install.packages('lubridate')
-  #'
   #' author: Selene Fregosi selene.fregosi [at] noaa.gov
   #' date: 28 July 2023
   #'
   #' @param inCSV filename of csv containing track data to be processed. Must
   #' include the following columns:
-  #' uid, lat1, lon1, lat2, lon2
-  #' where uid is a unique track identifier, lat/lon1 is the start location and
-  #' lat/lon2 is the end location.
+  #' uid, startLat, startLon, stopLat, stopLon
+  #' where uid is a unique track identifier, startLat/startLon is the track
+  #' start location and stopLat/stopLon is the track end location.
   #' All locations should be in decimal degrees.
-  #' Can optionally include a dateTime1 and dateTime2 column, or a single date
-  #' or dateTime column. Any additional columns will be ignored.
+  #' Can optionally include a startDateTime and stopDateTime column. Assumes
+  #' UTC timezone for GPX output.
   #' @param outGPX fullpath filename of gpx to be written
   #' example: outGPX = './crputils/exampleData/exampleVesselTrack.gpx'
   #'
@@ -34,7 +30,7 @@ CSVToGPX_track = function(inCSV, outGPX){
   #' @examples
   #' inCSV = './exampleData/exampleVesselTrack.csv'
   #' outGPX = './exampleData/exampleVesselTrack.gpx'
-  #' CSVToGPX(inCSV, outGPX)
+  #' CSVToGPX_track(inCSV, outGPX)
   #'
   #' ######################################################################
   #'
@@ -44,19 +40,10 @@ CSVToGPX_track = function(inCSV, outGPX){
   # Coerce tdf (track data frame) into a simplified longform format
 
   # trim to just essential columns
-  trimCols = c('uid', 'lat1', 'lon1', 'lat2', 'lon2')
-  # check if dateTime columns exist
-  if ('date' %in% colnames(tdf)){
-    trimCols = c(trimCols, 'date')
-  }
-  if ('dateTime' %in% colnames(tdf)){
-    trimCols = c(trimCols, 'dateTime')
-  }
-  if ('dateTime1' %in% colnames(tdf)){
-    trimCols = c(trimCols, 'dateTime1')
-  }
-  if ('dateTime2' %in% colnames(tdf)){
-    trimCols = c(trimCols, 'dateTime2')
+  trimCols = c('uid', 'startLat', 'startLon', 'stopLat', 'stopLon')
+  # check if dateTime columns exist, and include if they do
+  if ('startDateTime' %in% colnames(tdf) && 'stopDateTime' %in% colnames(tdf)){
+    trimCols = c(trimCols, 'startDateTime', 'stopDateTime')
   }
   tt = subset(tdf, select = trimCols)
 
@@ -66,11 +53,11 @@ CSVToGPX_track = function(inCSV, outGPX){
   }
 
   # reshape to long format with 'status' tag for start or end of each segment
-  # if dateTime1 and 2 are present, include that
-  varyList = list(lat = c('lat1', 'lat2'), lon = c('lon1', 'lon2'))
+  # if startDateTime and 2 are present, include that
+  varyList = list(lat = c('startLat', 'stopLat'), lon = c('startLon', 'stopLon'))
   varyNames = c('lat', 'lon')
-  if ('dateTime1' %in% colnames(tt) && 'dateTime2' %in% colnames(tt)){
-    varyList$dt = c('dateTime1', 'dateTime2')
+  if ('startDateTime' %in% colnames(tt) && 'stopDateTime' %in% colnames(tt)){
+    varyList$dt = c('startDateTime', 'stopDateTime')
     varyNames = c(varyNames, 'dateTime')
   } else if ('dateTime' %in% colnames(tt)){
     varyList$dt = c('dateTime')
@@ -86,16 +73,32 @@ CSVToGPX_track = function(inCSV, outGPX){
                 varying = varyList,
                 v.names = varyNames,
                 timevar = 'status',
-                times = c('start', 'end'))
+                times = c('start', 'stop'))
 
   # reorder by uid
   ttl = ttl[order(ttl$uid),]
+
+  # create datetime col with proper formatting for gpx
+  # several options provided, could be expanded for other formats
+  if ('dateTime' %in% colnames(ttl)){
+    ttl$dateTime = as.POSIXlt(ttl$dateTime, tz = 'UTC',
+                              tryFormats = c("%Y-%m-%d %H:%M:%OS",
+                                             "%Y/%m/%d %H:%M:%OS",
+                                             "%Y-%m-%d %H:%M",
+                                             "%Y/%m/%d %H:%M",
+                                             "%Y-%m-%d",
+                                             "%Y/%m/%d",
+                                             '%m/%d/%Y %H:%M'))
+    ttl$dt = format(ttl$dateTime, format = "%Y-%m-%dT%H:%M:%S%z")
+  }
+
+
 
   # set up the GPX file header info
   # this is copied from a gpx file made using an online converter
   gpxHeader_xmlVer = '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
   # The websites and such might not be necessary...
-  gpxHeader_gpxVer = paste('<gpx version="1.1" creator="R CSVToGPX.R"',
+  gpxHeader_gpxVer = paste('<gpx version="1.1" creator="R CSVToGPX_track.R"',
                            'xmlns="http://www.topografix.com/GPX/1/1"',
                            'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
                            'xsi:schemaLocation="http://www.topografix.com/GPX/1/1',
@@ -134,12 +137,12 @@ CSVToGPX_track = function(inCSV, outGPX){
                    '" lon="', ttl$lon[uIdx][j],'">')
       )
       if ('dateTime' %in% colnames(ttl)){
-        o = c(o, paste0('      <time>', etLong$dt[dtIdx][segIdx][j],'</time>'))
+        o = c(o, paste0('      <time>', ttl$dt[uIdx][j],'</time>'))
       }
       o = c(o, '    </trkpt>')
     }
     o = c(o,
-          '  <trkseg>',
+          '  </trkseg>',
           '</trk>'
     )
 

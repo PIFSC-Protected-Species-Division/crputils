@@ -5,10 +5,8 @@
   <name>1</name>
   <trkseg>
     <trkpt lat="19.81733333" lon="-156.274">
-      <time>2023-07-23T06:00:00+0000</time>
     </trkpt>
     <trkpt lat="19.75466667" lon="-156.2033333">
-      <time>2023-07-23T06:34:00+0000</time>
     </trkpt>
   </trkseg>
 </trk>
@@ -16,10 +14,8 @@
   <name>2</name>
   <trkseg>
     <trkpt lat="19.71533333" lon="-156.1568333">
-      <time>2023-07-23T06:55:00+0000</time>
     </trkpt>
     <trkpt lat="19.60916522" lon="-156.0363545">
-      <time>2023-07-23T07:53:00+0000</time>
     </trkpt>
   </trkseg>
 </trk>
@@ -27,10 +23,8 @@
   <name>3</name>
   <trkseg>
     <trkpt lat="19.8265" lon="-156.1041667">
-      <time>2023-07-23T12:01:00+0000</time>
     </trkpt>
     <trkpt lat="19.87666673" lon="-156.266163">
-      <time>2023-07-23T13:06:00+0000</time>
     </trkpt>
   </trkseg>
 </trk>
@@ -38,10 +32,8 @@
   <name>4</name>
   <trkseg>
     <trkpt lat="19.88233333" lon="-156.2903333">
-      <time>2023-07-23T13:15:00+0000</time>
     </trkpt>
     <trkpt lat="19.91283367" lon="-156.4111492">
-      <time>2023-07-23T14:03:00+0000</time>
     </trkpt>
   </trkseg>
 </trk>
@@ -49,10 +41,8 @@
   <name>5</name>
   <trkseg>
     <trkpt lat="19.92783333" lon="-156.4755">
-      <time>2023-07-23T14:27:00+0000</time>
     </trkpt>
     <trkpt lat="19.9330002" lon="-156.4954889">
-      <time>2023-07-23T14:34:00+0000</time>
     </trkpt>
   </trkseg>
 </trk>
@@ -60,10 +50,8 @@
   <name>6</name>
   <trkseg>
     <trkpt lat="19.93583333" lon="-156.5073333">
-      <time>2023-07-23T14:39:00+0000</time>
     </trkpt>
     <trkpt lat="20.05616699" lon="-157.2149853">
-      <time>2023-07-23T18:55:00+0000</time>
     </trkpt>
   </trkseg>
 </trk>
