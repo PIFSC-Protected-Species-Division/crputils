@@ -1,7 +1,7 @@
 CSVToGPX_track = function(inCSV, outGPX){
   #' CSVToGPX_track
   #'
-  #' description: convert a .csv of vessel track segments to a .gpx file.
+  #' @description convert a .csv of vessel track segments to a .gpx file.
   #'
   #' The input data.frame must have 1 column 'uid' containing a unique
   #' identifier for that track/segment, 2 columns for start latitude and
@@ -12,7 +12,7 @@ CSVToGPX_track = function(inCSV, outGPX){
   #' 'cruise-maps-live' repository that tries to generalize the function to
   #' convert any input data.frame, not just the output from a .das file.
   #'
-  #' author: Selene Fregosi selene.fregosi [at] noaa.gov
+  #' author: Selene Fregosi selene.fregosi at noaa.gov
   #' date: 28 July 2023
   #'
   #' @param inCSV filename of csv containing track data to be processed. Must
