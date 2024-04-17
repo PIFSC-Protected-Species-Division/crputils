@@ -8,30 +8,23 @@ decdeg2degminsec(decdeg)
 }
 \arguments{
 \item{decdeg}{N-by-1 vector of coordinates in decimal degrees
-e.g., 30.48667
-e.g., matrix(c(30.48667, -155.61496),
-nrow = 2, ncol = 1, byrow = TRUE)}
+e.g., decdeg = 30.48667 OR decdeg = c(30.48667, -155.61496)}
 }
 \value{
-degminsec N-by-3 matrix of coordinates with each column
-representing degrees, minutes, and seconds
+N-by-3 data.frame of coordinates with columns 'deg' for
+degrees, 'min' for minutes, and 'sec' for decimal seconds
 }
 \description{
 Utility to convert latitude and longitude coordinates from
 degrees minutes to degrees minutes second
-
-author: Selene Fregosi selene.fregosi \link{at} noaa.gov
-date: 28 July 2023
 }
 \examples{
-# # single input coordinates
+# single input coordinates
 decdeg = 30.48667
 degminsec = decdeg2degminsec(decdeg)
 
-# # multiple input coordinates
-decdeg = matrix(c(30.48667, -155.61496),
-                nrow = 2, ncol = 1, byrow = TRUE)
+# multiple input coordinates
+decdeg = c(30.48667, -155.61496)
 degminsec = decdeg2degminsec(decdeg)
 
-######################################################################
 }

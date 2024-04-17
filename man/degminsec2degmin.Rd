@@ -15,25 +15,22 @@ e.g., matrix(c(30, 29, 12,
 nrow = 2, ncol = 3, byrow = TRUE)}
 }
 \value{
-degmin  N-by-2 vector of coordinates in degrees minutes
+N-by-2 data.frame of coordinates with columns 'deg' for degrees and
+'min for minutes
 }
 \description{
 Utility to convert latitude and longitude coordinates from
-degrees minutes seconds to degrees minutes
-
-author: Selene Fregosi selene.fregosi \link{at} noaa.gov
-date: 28 July 2023
+degrees minutes seconds to degrees decimal minutes
 }
 \examples{
-# # single input coordinates
+# single input coordinates
 degminsec = matrix(c(30, 29, 12), nrow = 1, ncol = 3)
 degmin = degminsec2degmin(degminsec)
 
-# # multiple input coordinates
-degminsec = matrix(c(30, 29, 12,        
-                     -155, 36, 53.838), 
+# multiple input coordinates
+degminsec = matrix(c(30, 29, 12,
+                     -155, 36, 53.838),
                    nrow = 2, ncol = 3, byrow = TRUE)
 degmin = degminsec2degmin(degminsec)
 
-######################################################################
 }

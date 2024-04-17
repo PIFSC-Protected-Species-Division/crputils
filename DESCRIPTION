@@ -1,15 +1,15 @@
 Package: crputils
 Title: Miscellaneous R Utilities Useful to CRP
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
-    SF = person("Selene", "Fregosi", email = "selene.fregosi@noaa.gov", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-2685-3736")))
+    SF = person("Selene", "Fregosi", email = "selene.fregosi@noaa.gov", 
+    role = c("aut", "cre"), comment = c(ORCID = "0000-0002-2685-3736")))
 Maintainer: Selene Fregosi <selene.fregosi@noaa.gov>
-Description: A collection of miscellaneous utilities that are useful to various 
+Description: A collection of miscellaneous utilities that are useful for various 
     research activities conducted by the Cetacean Research Program (CRP) at NOAA 
-    Pacific Islands Fisheries Science Center. This includes utilities for working
-    with latitude and longitude data, gpx file creation, and more to come. 
+    NMFS Pacific Islands Fisheries Science Center. This includes utilities for 
+    working with latitude and longitude data, gpx file creation, and more to come. 
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
