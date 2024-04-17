@@ -30,7 +30,7 @@ DASTrackToGPX <- function(et, outGPX){
   # Get et into a simplified longform format
   # clean up et to the essential cols
   etTrim <- subset(et, select = c(Cruise, segnum, lat1, lon1, DateTime1,
-                                 lat2, lon2, DateTime2, avgBft))
+                                  lat2, lon2, DateTime2, avgBft))
 
   # add a 'date' only column
   etTrim$date <- lubridate::date(et$DateTime1)
@@ -39,21 +39,21 @@ DASTrackToGPX <- function(et, outGPX){
 
   # reshape to long format with 'status' tag for start or end of each segment
   etLong <- reshape(etTrim, direction = 'long',
-                   idvar = 'uid',
-                   ids = etTrim$uid,
-                   varying = list(lat = c('lat1', 'lat2'),
-                                  lon = c('lon1', 'lon2'),
-                                  dt = c('DateTime1', 'DateTime2')),
-                   # 'lon', 'DateTime') #,
-                   # 'lat2', 'lon2', 'DateTime2')#,
-                   v.names = c('lat', 'lon', 'DateTime'),
-                   timevar = 'status',
-                   times = c('start', 'end')
+                    idvar = 'uid',
+                    ids = etTrim$uid,
+                    varying = list(lat = c('lat1', 'lat2'),
+                                   lon = c('lon1', 'lon2'),
+                                   dt = c('DateTime1', 'DateTime2')),
+                    # 'lon', 'DateTime') #,
+                    # 'lat2', 'lon2', 'DateTime2')#,
+                    v.names = c('lat', 'lon', 'DateTime'),
+                    timevar = 'status',
+                    times = c('start', 'end')
   )
 
   # reorder by segnum, and rearrange columns
   etLong <- etLong[order(etLong$date, etLong$Cruise, etLong$segnum),
-                  c(1, 5, 4, 2, 6:9, 3)]
+                   c(1, 5, 4, 2, 6:9, 3)]
 
   # create datetime col with proper formatting for gpx
   etLong$dt <- format(etLong$DateTime, format = "%Y-%m-%dT%H:%M:%S%z")
@@ -67,22 +67,22 @@ DASTrackToGPX <- function(et, outGPX){
   gpxHeader_xmlVer <- '<?xml version="1.0" encoding="utf-8" standalone="yes"?>';
   # The websites and such might not be necessary...
   gpxHeader_gpxVer <- paste('<gpx version="1.1" creator="R trackToGPX.R"',
-                           'xmlns="http://www.topografix.com/GPX/1/1"',
-                           'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
-                           'xsi:schemaLocation="http://www.topografix.com/GPX/1/1',
-                           'http://www.topografix.com/GPX/1/1/gpx.xsd">')
+                            'xmlns="http://www.topografix.com/GPX/1/1"',
+                            'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
+                            'xsi:schemaLocation="http://www.topografix.com/GPX/1/1',
+                            'http://www.topografix.com/GPX/1/1/gpx.xsd">')
   # metadata - other things could be added here.
   gpxHeader_metadata <- paste0('<metadata><bounds ',
-                              'minlat="', format(min(etLong$lat), nsmall = 6), '" ',
-                              'minlon="', format(min(etLong$lon), nsmall = 6), '" ',
-                              'maxlat="', format(max(etLong$lat), nsmall = 6), '" ',
-                              'maxlon="', format(max(etLong$lon), nsmall = 6), '"',
-                              '/></metadata>')
+                               'minlat="', format(min(etLong$lat), nsmall = 6), '" ',
+                               'minlon="', format(min(etLong$lon), nsmall = 6), '" ',
+                               'maxlat="', format(max(etLong$lat), nsmall = 6), '" ',
+                               'maxlon="', format(max(etLong$lon), nsmall = 6), '"',
+                               '/></metadata>')
 
   # start assembling the file contents, in 'o'
   o <- c(gpxHeader_xmlVer,
-        gpxHeader_gpxVer,
-        gpxHeader_metadata
+         gpxHeader_gpxVer,
+         gpxHeader_metadata
   )
 
   for (i in 1:length(uidList)){
@@ -98,32 +98,32 @@ DASTrackToGPX <- function(et, outGPX){
     # add to our output string
     # set up the track and segment
     o <- c(o, '<trk>',
-          paste0('  <name>', cruise, '_', dt, '_seg', segNum, '_avgBft', avgBft,
-                 '</name>'),
-          paste0('  <desc>Vessel track for Cruise ', cruise, ', ', dt,
-                 ', effort segment ', segNum, ', avg Beaufort SS ', avgBft,
-                 '</desc>'),
-          '  <trkseg>'
+           paste0('  <name>', cruise, '_', dt, '_seg', segNum, '_avgBft', avgBft,
+                  '</name>'),
+           paste0('  <desc>Vessel track for Cruise ', cruise, ', ', dt,
+                  ', effort segment ', segNum, ', avg Beaufort SS ', avgBft,
+                  '</desc>'),
+           '  <trkseg>'
     )
 
     # parse the lat/lon/datetime info as track segment points
     for (j in 1:2){
       o <- c(o,
-            paste0('    <trkpt lat="', etLong$lat[uIdx][j],
-                   '" lon="', etLong$lon[uIdx][j],'">'),
-            paste0('      <time>', etLong$dt[uIdx][j],'</time>'),
-            '    </trkpt>')
+             paste0('    <trkpt lat="', etLong$lat[uIdx][j],
+                    '" lon="', etLong$lon[uIdx][j],'">'),
+             paste0('      <time>', etLong$dt[uIdx][j],'</time>'),
+             '    </trkpt>')
     }
     o <- c(o,
-          # try some extra info about the segment
-          # paste0('<date>',
-          #        etLong$date[which(etLong$segnum == segNum)[1]],
-          #        '</date>'),
-          # paste0('<segnum>',
-          #        etLong$segnum[which(etLong$segnum == segNum)[1]],
-          #        '</segnum>'),
-          '  </trkseg>',
-          '</trk>'
+           # try some extra info about the segment
+           # paste0('<date>',
+           #        etLong$date[which(etLong$segnum == segNum)[1]],
+           #        '</date>'),
+           # paste0('<segnum>',
+           #        etLong$segnum[which(etLong$segnum == segNum)[1]],
+           #        '</segnum>'),
+           '  </trkseg>',
+           '</trk>'
     )
   } # loop through each segment
   o <- c(o, '</gpx>')
