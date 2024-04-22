@@ -41,7 +41,7 @@ remotes::install_github('pifsc-protected-species-division/crputils')
 
 ## Components:
 
-#### Latitude/longitude format conversions
+### Latitude/longitude format conversions
 
 Functions to convert between different latitude/longitude formats.
 Includes:
@@ -53,10 +53,11 @@ Includes:
 -   Degrees minutes seconds (DMS) TO decimal degrees (DD) or degrees
     decimal minutes (DMM)
 
-See `exampleWorkflows/workflow_latLonCov` for example script to use
-these functions.
+See
+[`exampleWorkflows/workflow_latLonCov`](https://github.com/PIFSC-Protected-Species-Division/crputils/blob/main/exampleWorkflows/workflow_latLonConv.R)
+for example script to use these functions.
 
-#### GPX creation
+### GPX creation
 
 Functions to convert tables of lat/lon data to GPX files readable by
 Coastal Explorer
