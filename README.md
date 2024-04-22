@@ -9,11 +9,11 @@ Miscellaneous R utilities used by CRP
 
 What?! It’s an R package!!
 
-### Installation
+## Installation
 
-#### R-Universe
+### R-Universe
 
-##### Binary
+#### Binary
 
 ``` r
 install.packages('crputils', 
@@ -21,7 +21,7 @@ install.packages('crputils',
 )
 ```
 
-### Source
+#### Source
 
 *You will need a C++ compiler for R*
 
@@ -31,7 +31,7 @@ install.packages('crputils', type='source',
 )
 ```
 
-## github
+### GitHub
 
 *You will need a C++ compiler for R*
 
@@ -39,9 +39,9 @@ install.packages('crputils', type='source',
 remotes::install_github('pifsc-protected-species-division/crputils')
 ```
 
-### Components:
+## Components:
 
-##### Latitude/longitude format conversions
+#### Latitude/longitude format conversions
 
 Functions to convert between different latitude/longitude formats.
 Includes:
@@ -56,12 +56,12 @@ Includes:
 See `exampleWorkflows/workflow_latLonCov` for example script to use
 these functions.
 
-##### GPX creation
+#### GPX creation
 
 Functions to convert tables of lat/lon data to GPX files readable by
 Coastal Explorer
 
-# Disclaimer
+## Disclaimer
 
 *This software package is developed and maintained by scientists at the
 NOAA Fisheries Pacific Islands Fisheries Science Center and should be
