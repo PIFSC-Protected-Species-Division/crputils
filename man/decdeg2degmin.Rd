@@ -8,7 +8,7 @@ decdeg2degmin(decdeg)
 }
 \arguments{
 \item{decdeg}{N-by-1 vector of coordinates in decimal degrees
-e.g., decdeg = 30.48667 OR decdeg = c(30.48667, -155.61496)}
+e.g., \code{decdeg <- 30.48667} OR \code{decdeg <- c(30.48667, -155.61496)}}
 }
 \value{
 N-by-2 data.frame of coordinates with columns 'deg' for

@@ -1,12 +1,12 @@
 #' extractDASTrack
 #'
 #' @description Pull effort tracks from a relatively raw daily .das file into
-#' a simpler dataframe. Utilizes the package 'swfscDAS' and then cleans up those
-#' outputs a bit. Generalized from cruise-maps-live's extractTrack()
+#' a simpler dataframe. Utilizes the package \code{swfscDAS} and then cleans up those
+#' outputs a bit. Generalized from cruise-maps-live's \code{extractTrack()}
 #'
 #' @author Selene Fregosi
 #'
-#' @param df_proc processed das file (with swfscDAS::das_process)
+#' @param df_proc processed das file (with \code{swfscDAS::das_process})
 #'
 #' @returns a dataframe of effort tracks with date and lat/lon
 #'

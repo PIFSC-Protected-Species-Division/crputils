@@ -7,13 +7,13 @@
 #'
 #' @param degminsec N-by-3 matrix of coordinates with each column representing
 #' degrees, minutes, and seconds
-#' e.g., matrix(c(30, 29, 12), nrow = 1, ncol = 3)
-#' e.g., matrix(c(30, 29, 12,
-#'                -155, 36, 53.838),
-#'              nrow = 2, ncol = 3, byrow = TRUE)
+#' e.g., \code{matrix(c(30, 29, 12), nrow = 1, ncol = 3)} \cr
+#' e.g., \code{matrix(c(30, 29, 12,
+#'              -155, 36, 53.838),
+#'              nrow = 2, ncol = 3, byrow = TRUE)}
 #'
 #' @returns N-by-2 data.frame of coordinates with columns 'deg' for degrees and
-#' 'min for minutes
+#' 'min' for minutes
 #'
 #' @export
 #'
@@ -24,7 +24,7 @@
 #'
 #' # multiple input coordinates
 #' degminsec <- matrix(c(30, 29, 12,
-#'                      -155, 36, 53.838),
+#'                    -155, 36, 53.838),
 #'                    nrow = 2, ncol = 3, byrow = TRUE)
 #' degmin <- degminsec2degmin(degminsec)
 #'

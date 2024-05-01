@@ -7,15 +7,15 @@
 extractDASTrack(df_proc)
 }
 \arguments{
-\item{df_proc}{processed das file (with swfscDAS::das_process)}
+\item{df_proc}{processed das file (with \code{swfscDAS::das_process})}
 }
 \value{
 a dataframe of effort tracks with date and lat/lon
 }
 \description{
 Pull effort tracks from a relatively raw daily .das file into
-a simpler dataframe. Utilizes the package 'swfscDAS' and then cleans up those
-outputs a bit. Generalized from cruise-maps-live's extractTrack()
+a simpler dataframe. Utilizes the package \code{swfscDAS} and then cleans up those
+outputs a bit. Generalized from cruise-maps-live's \code{extractTrack()}
 }
 \author{
 Selene Fregosi

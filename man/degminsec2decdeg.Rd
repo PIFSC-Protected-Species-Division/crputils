@@ -9,10 +9,10 @@ degminsec2decdeg(degminsec)
 \arguments{
 \item{degminsec}{N-by-3 matrix of coordinates with each column representing
 degrees, minutes, and seconds
-e.g., matrix(c(30, 29, 12), nrow = 1, ncol = 3)
-e.g., matrix(c(30, 29, 12,
--155, 36, 53.838),
-nrow = 2, ncol = 3, byrow = TRUE)}
+e.g., \code{matrix(c(30, 29, 12), nrow = 1, ncol = 3)}
+e.g., \code{matrix(c(30, 29, 12,
+               -155, 36, 53.838),
+             nrow = 2, ncol = 3, byrow = TRUE)}}
 }
 \value{
 N-by-1 vector of coordinates in decimal degrees

@@ -17,7 +17,7 @@ Can optionally include a startDateTime and stopDateTime column. Assumes
 UTC timezone for GPX output.}
 
 \item{outGPX}{fullpath filename of gpx to be written
-example: outGPX = './crputils/exampleData/exampleVesselTrack.gpx'}
+example: \code{outGPX <- './crputils/exampleData/exampleVesselTrack.gpx'}}
 }
 \value{
 none, will write a file

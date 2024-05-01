@@ -7,7 +7,7 @@
 #' longitude, and 2 columns for stop latitude and longitude.
 #' Additional columns for cruise, date, vessel name, etc will be ignored
 #'
-#' This is a modified version of `trackToGPX.R` that is included in the
+#' This is a modified version of \code{trackToGPX.R} that is included in the
 #' 'cruise-maps-live' repository that tries to generalize the function to
 #' convert any input data.frame, not just the output from a .das file.
 #'
@@ -22,7 +22,7 @@
 #' Can optionally include a startDateTime and stopDateTime column. Assumes
 #' UTC timezone for GPX output.
 #' @param outGPX fullpath filename of gpx to be written
-#' example: outGPX = './crputils/exampleData/exampleVesselTrack.gpx'
+#' example: \code{outGPX <- './crputils/exampleData/exampleVesselTrack.gpx'}
 #'
 #' @return none, will write a file
 #'
@@ -31,8 +31,8 @@
 #' @importFrom stats reshape
 #'
 # examples
-# inCSV = './exampleData/exampleVesselTrack.csv'
-# outGPX = './exampleData/exampleVesselTrack.gpx'
+# inCSV <- './exampleData/exampleVesselTrack.csv'
+# outGPX <- './exampleData/exampleVesselTrack.gpx'
 # CSVToGPX_track(inCSV, outGPX)
 
 

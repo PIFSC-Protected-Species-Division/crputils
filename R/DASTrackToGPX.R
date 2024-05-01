@@ -2,19 +2,19 @@
 #'
 #' @description create a .gpx file based on the effort track data recorded in
 #' .DAS files. The track data needs to have been extracted from the
-#' .DAS file using `extractTrack()` which creates the 'et' dataframe
+#' .DAS file using \code{extractDASTrack()} which creates the 'et' dataframe
 #'
 #' Track segments within days are plotted separately but are connected. Tracks
 #' across days are not connected.
 #'
-#' This was generalized from the cruise-maps-live repository's trackToGPX()
+#' This was generalized from the cruise-maps-live repository's \code{trackToGPX()}
 #'
 #' @author Selene Fregosi
 #'
 #' @param et data.frame of effort as tracks, can be 'et' cumulative over a
 #' survey or 'et' for just a single DAS
 #' @param outGPX fullpath filename to save
-#' example: outGPX <- paste0('newEffortTracks_', dasName, '_', Sys.Date(), '.gpx
+#' example: \code{outGPX <- paste0('newEffortTracks_', dasName, '_', Sys.Date(), '.gpx')}
 #'
 #' @returns none, will write a file
 #'
