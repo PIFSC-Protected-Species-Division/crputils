@@ -11,7 +11,7 @@ DASTrackToGPX(et, outGPX)
 survey or 'et' for just a single DAS}
 
 \item{outGPX}{fullpath filename to save
-example: outGPX = paste0('newEffortTracks_', dasName, '_', Sys.Date(), '.gpx}
+example: outGPX <- paste0('newEffortTracks_', dasName, '_', Sys.Date(), '.gpx}
 }
 \value{
 none, will write a file
@@ -25,12 +25,7 @@ Track segments within days are plotted separately but are connected. Tracks
 across days are not connected.
 
 This was generalized from the cruise-maps-live repository's trackToGPX()
-
-author: Selene Fregosi selene.fregosi \link{at} noaa.gov
-date: 17 April 2024
 }
-\examples{
-load('./cruise-maps-live/data/2023_leg01_OES/compiledEffortTracks_2023_leg01_OES.Rda')
-trackToGPX(et, './cruise-maps-live/data/2023_leg01_OES/gpx/test.gpx')
-
+\author{
+Selene Fregosi
 }

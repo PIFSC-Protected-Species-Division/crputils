@@ -33,3 +33,6 @@ degmin = matrix(c(30, 29.2020,
 decdeg = degmin2decdeg(degmin)
 
 }
+\author{
+Selene Fregosi
+}

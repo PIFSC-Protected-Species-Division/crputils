@@ -33,3 +33,6 @@ degminsec = matrix(c(30, 29, 12,
 decdeg = degminsec2decdeg(degminsec)
 
 }
+\author{
+Selene Fregosi
+}

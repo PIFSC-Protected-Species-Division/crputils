@@ -16,12 +16,7 @@ a dataframe of effort tracks with date and lat/lon
 Pull effort tracks from a relatively raw daily .das file into
 a simpler dataframe. Utilizes the package 'swfscDAS' and then cleans up those
 outputs a bit. Generalized from cruise-maps-live's extractTrack()
-
-author: Selene Fregosi selene.fregosi \link{at} noaa.gov
-last updated: 17 April 2024
 }
-\examples{
-# extract all new tracks from a given das file, d$name
-et = extractTrack(here('inputs', d$name))
-
+\author{
+Selene Fregosi
 }

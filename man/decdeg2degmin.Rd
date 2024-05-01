@@ -20,11 +20,14 @@ decimal degrees to degrees decimal minutes
 }
 \examples{
 # single input coordinates
-decdeg = 30.48667
-degmin = decdeg2degmin(decdeg)
+decdeg <- 30.48667
+degmin <- decdeg2degmin(decdeg)
 
 # multiple input coordinates
-decdeg = c(30.48667, -155.61496)
-degmin = decdeg2degmin(decdeg)
+decdeg <- c(30.48667, -155.61496)
+degmin <- decdeg2degmin(decdeg)
 
+}
+\author{
+Selene Fregosi
 }

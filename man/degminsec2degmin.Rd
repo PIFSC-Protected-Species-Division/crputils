@@ -24,13 +24,16 @@ degrees minutes seconds to degrees decimal minutes
 }
 \examples{
 # single input coordinates
-degminsec = matrix(c(30, 29, 12), nrow = 1, ncol = 3)
-degmin = degminsec2degmin(degminsec)
+degminsec <- matrix(c(30, 29, 12), nrow = 1, ncol = 3)
+degmin <- degminsec2degmin(degminsec)
 
 # multiple input coordinates
-degminsec = matrix(c(30, 29, 12,
+degminsec <- matrix(c(30, 29, 12,
                      -155, 36, 53.838),
                    nrow = 2, ncol = 3, byrow = TRUE)
-degmin = degminsec2degmin(degminsec)
+degmin <- degminsec2degmin(degminsec)
 
+}
+\author{
+Selene Fregosi
 }

@@ -11,6 +11,8 @@
 #' 'cruise-maps-live' repository that tries to generalize the function to
 #' convert any input data.frame, not just the output from a .das file.
 #'
+#' @author Selene Fregosi
+#'
 #' @param inCSV filename of csv containing track data to be processed. Must
 #' include the following columns:
 #' uid, startLat, startLon, stopLat, stopLon
@@ -23,18 +25,21 @@
 #' example: outGPX = './crputils/exampleData/exampleVesselTrack.gpx'
 #'
 #' @return none, will write a file
+#'
 #' @export
+#' @importFrom utils read.csv
+#' @importFrom stats reshape
 #'
-#' @examples
-#' inCSV = './exampleData/exampleVesselTrack.csv'
-#' outGPX = './exampleData/exampleVesselTrack.gpx'
-#' CSVToGPX_track(inCSV, outGPX)
-#'
+# examples
+# inCSV = './exampleData/exampleVesselTrack.csv'
+# outGPX = './exampleData/exampleVesselTrack.gpx'
+# CSVToGPX_track(inCSV, outGPX)
+
 
 CSVToGPX_track <- function(inCSV, outGPX){
 
   # read in CSV
-  tdf <- read.csv(inCSV)
+  tdf <- utils::read.csv(inCSV)
   # Coerce tdf (track data frame) into a simplified longform format
 
   # trim to just essential columns
@@ -43,7 +48,7 @@ CSVToGPX_track <- function(inCSV, outGPX){
   if ('startDateTime' %in% colnames(tdf) && 'stopDateTime' %in% colnames(tdf)){
     trimCols <- c(trimCols, 'startDateTime', 'stopDateTime')
   }
-  tt = subset(tdf, select = trimCols)
+  tt <- subset(tdf, select = trimCols)
 
   # if any segnums are duplicated, print error message
   if (any(duplicated(tt$uid))){
@@ -65,7 +70,7 @@ CSVToGPX_track <- function(inCSV, outGPX){
     varyNames <- c(varyNames, 'date')
   }
 
-  ttl <- reshape(tt, direction = 'long',
+  ttl <- stats::reshape(tt, direction = 'long',
                 idvar = 'uid',
                 ids = tt$uid,
                 varying = varyList,

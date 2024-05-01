@@ -4,27 +4,31 @@
 #' a simpler dataframe. Utilizes the package 'swfscDAS' and then cleans up those
 #' outputs a bit. Generalized from cruise-maps-live's extractTrack()
 #'
-#' author: Selene Fregosi selene.fregosi [at] noaa.gov
-#' last updated: 17 April 2024
+#' @author Selene Fregosi
 #'
 #' @param df_proc processed das file (with swfscDAS::das_process)
 #'
-#' @return a dataframe of effort tracks with date and lat/lon
+#' @returns a dataframe of effort tracks with date and lat/lon
+#'
 #' @export
+#' @importFrom swfscDAS das_effort
 #'
-#' @examples
-#' # extract all new tracks from a given das file, d$name
-#' et = extractTrack(here('inputs', d$name))
-#'
+# examples
+# # extract all new tracks from a given das file, d$name
+# et <- extractDASTrack(here('inputs', d$name))
+#
 
 extractDASTrack <- function(df_proc){
+
+  # col headers throw warning in build, this fixes
+  Cruise <- segnum <- stlin <- mtime <- Mode <- EffType <- avgSpdKt <- avgBft <- NULL
 
   # summarize effort segments. 'section' method pulls lat/lon for all 'R'
   # (resume effort) and all 'E' (end effort) entries, then calcs dist between
   if (any(df_proc$Event == 'R')){ # check for any on effort segments
 
-    et_all <- swfscDAS::das_effort(df_proc, method = 'section', dist.method = 'greatcircle',
-                                  num.cores = 1)
+    et_all <- swfscDAS::das_effort(df_proc, method = 'section',
+                                   dist.method = 'greatcircle', num.cores = 1)
     # trim to just what we want
     et_seg <- et_all$segdata
     et <- subset(et_seg, select = c(Cruise, segnum, file, stlin:mtime, Mode,

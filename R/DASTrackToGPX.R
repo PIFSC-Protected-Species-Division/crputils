@@ -9,23 +9,28 @@
 #'
 #' This was generalized from the cruise-maps-live repository's trackToGPX()
 #'
-#' author: Selene Fregosi selene.fregosi [at] noaa.gov
-#' date: 17 April 2024
+#' @author Selene Fregosi
 #'
 #' @param et data.frame of effort as tracks, can be 'et' cumulative over a
 #' survey or 'et' for just a single DAS
 #' @param outGPX fullpath filename to save
-#' example: outGPX = paste0('newEffortTracks_', dasName, '_', Sys.Date(), '.gpx
+#' example: outGPX <- paste0('newEffortTracks_', dasName, '_', Sys.Date(), '.gpx
 #'
-#' @return none, will write a file
+#' @returns none, will write a file
+#'
 #' @export
+#' @importFrom lubridate date
+#' @importFrom stringr str_c
 #'
-#' @examples
-#' load('./cruise-maps-live/data/2023_leg01_OES/compiledEffortTracks_2023_leg01_OES.Rda')
-#' trackToGPX(et, './cruise-maps-live/data/2023_leg01_OES/gpx/test.gpx')
-#'
+# examples
+# load('./cruise-maps-live/data/2023_leg01_OES/compiledEffortTracks_2023_leg01_OES.Rda')
+# trackToGPX(et, './cruise-maps-live/data/2023_leg01_OES/gpx/test.gpx')
+
 
 DASTrackToGPX <- function(et, outGPX){
+
+  # col headers throw warning in build, this fixes
+ Cruise <- segnum <- lat1 <- lon1 <- DateTime1 <- lat2 <- lon2 <- DateTime2 <- NULL
 
   # Get et into a simplified longform format
   # clean up et to the essential cols
@@ -38,7 +43,7 @@ DASTrackToGPX <- function(et, outGPX){
   etTrim$uid <- stringr::str_c(etTrim$Cruise, etTrim$date, etTrim$segnum, sep = '_')
 
   # reshape to long format with 'status' tag for start or end of each segment
-  etLong <- reshape(etTrim, direction = 'long',
+  etLong <- stats::reshape(etTrim, direction = 'long',
                     idvar = 'uid',
                     ids = etTrim$uid,
                     varying = list(lat = c('lat1', 'lat2'),
