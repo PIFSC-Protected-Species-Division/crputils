@@ -1,10 +1,12 @@
 Package: crputils
 Title: Miscellaneous R Utilities Useful to CRP
-Version: 0.1.9003
-Date: 2024-05-01
+Version: 0.2.0001
+Date: 2025-02-28
 Authors@R: c(
     SF = person("Selene", "Fregosi", email = "selene.fregosi@noaa.gov", 
-    role = c("aut", "cre"), comment = c(ORCID = "0000-0002-2685-3736")))
+    role = c("aut", "cre"), comment = c(ORCID = "0000-0002-2685-3736")),
+	YB = person("Yvonne", "Barkley", email = "yvonne.barkley@noaa.gov",
+	role = c("aut")))
 Maintainer: Selene Fregosi <selene.fregosi@noaa.gov>
 Description: A collection of miscellaneous utilities that are useful for various 
     research activities conducted by the Cetacean Research Program (CRP) at NOAA 
@@ -13,6 +15,9 @@ Description: A collection of miscellaneous utilities that are useful for various
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports:
   lubridate, stringr, swfscDAS, utils
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

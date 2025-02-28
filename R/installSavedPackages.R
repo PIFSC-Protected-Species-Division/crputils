@@ -11,7 +11,7 @@
 #' working directory)
 #'
 #' @export
-#' @importFrom
+#' @importFrom utils installed.packages install.packages update.packages
 #'
 # examples
 # #re-install R packages that were saved to the desktop
@@ -28,13 +28,13 @@ installSavedPackages <- function(fileName){
   installedPkgs <- readRDS(fileName)
   #get a list of what packages are installed (with the new R version, should be
   #fewer packages, just the basics)
-  tmp <- installed.packages() # this should have fewer packages, just the basics
+  tmp <- utils::installed.packages() # this should have fewer packages, just the basics
   installedPkgs_new <- as.vector(tmp[is.na(tmp[,"Priority"]), 1])
   #figure out which are missing (old vs new)
   missing <- setdiff(installedPkgs, installedPkgs_new)
   #install and update the missing packages
- install.packages(missing)
-update.packages()
+  utils::install.packages(missing)
+  utils::update.packages()
 
 #for testing
   # return(missing)

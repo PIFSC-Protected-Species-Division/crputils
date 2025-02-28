@@ -13,6 +13,7 @@
 #' @returns installedPkgs a dataframe of effort tracks with date and lat/lon
 #'
 #' @export
+#' @importFrom utils installed.packages
 #'
 # examples
 # #save installed packages to the desktop
@@ -22,7 +23,7 @@
 saveInstalledPackages <- function(fileName){
 
   #find all packages
-  tmp <- installed.packages()
+  tmp <- utils::installed.packages()
   #convert to vector
   installedPkgs <- as.vector(tmp[is.na(tmp[,"Priority"]), 1])
   #save it (as RDS for best practice)

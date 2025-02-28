@@ -9,9 +9,9 @@ degminsec2degmin(degminsec)
 \arguments{
 \item{degminsec}{N-by-3 matrix of coordinates with each column representing
 degrees, minutes, and seconds
-e.g., \code{matrix(c(30, 29, 12), nrow = 1, ncol = 3)}
+e.g., \code{matrix(c(30, 29, 12), nrow = 1, ncol = 3)} \cr
 e.g., \code{matrix(c(30, 29, 12,
-               -155, 36, 53.838),
+             -155, 36, 53.838),
              nrow = 2, ncol = 3, byrow = TRUE)}}
 }
 \value{
@@ -29,7 +29,7 @@ degmin <- degminsec2degmin(degminsec)
 
 # multiple input coordinates
 degminsec <- matrix(c(30, 29, 12,
-                     -155, 36, 53.838),
+                   -155, 36, 53.838),
                    nrow = 2, ncol = 3, byrow = TRUE)
 degmin <- degminsec2degmin(degminsec)
 
