@@ -1,9 +1,13 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![crputils status
 badge](https://pifsc-protected-species-division.r-universe.dev/badges/crputils)](https://pifsc-protected-species-division.r-universe.dev/crputils)
 
 # crputils
+
+<!-- badges: start -->
+<!-- badges: end -->
 
 Miscellaneous R utilities used by CRP
 
@@ -46,12 +50,12 @@ remotes::install_github('pifsc-protected-species-division/crputils')
 Functions to convert between different latitude/longitude formats.
 Includes:
 
--   Decimal degrees (DD) TO degrees decimal seconds (DMM) or degrees
-    minutes seconds (DMS)
--   Degrees decimal minutes (DMM) TO decimal degrees (DD) or degrees
-    minutes seconds (DMS)
--   Degrees minutes seconds (DMS) TO decimal degrees (DD) or degrees
-    decimal minutes (DMM)
+- Decimal degrees (DD) TO degrees decimal seconds (DMM) or degrees
+  minutes seconds (DMS)
+- Degrees decimal minutes (DMM) TO decimal degrees (DD) or degrees
+  minutes seconds (DMS)
+- Degrees minutes seconds (DMS) TO decimal degrees (DD) or degrees
+  decimal minutes (DMM)
 
 See
 [`exampleWorkflows/workflow_latLonCov`](https://github.com/PIFSC-Protected-Species-Division/crputils/blob/main/exampleWorkflows/workflow_latLonConv.R)

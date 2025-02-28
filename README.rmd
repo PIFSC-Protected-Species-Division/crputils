@@ -1,19 +1,15 @@
 ---
-output: 
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r setup, echo = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  # echo = FALSE, 
-  # warnings = FALSE, 
-  # error = FALSE, 
-  # message = FALSE,
   collapse = TRUE,
-  comment = '#'
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
 )
 
 link_repo <- "https://github.com/PIFSC-Protected-Species-Division/crputils"
@@ -23,6 +19,10 @@ link_repo <- "https://github.com/PIFSC-Protected-Species-Division/crputils"
 [![crputils status badge](https://pifsc-protected-species-division.r-universe.dev/badges/crputils)](https://pifsc-protected-species-division.r-universe.dev/crputils)
 
 # crputils
+
+<!-- badges: start -->
+<!-- badges: end -->
+
 Miscellaneous R utilities used by CRP
 
 What?! It's an R package!!
@@ -56,7 +56,6 @@ install.packages('crputils', type='source',
 ```{r, eval = FALSE}
 remotes::install_github('pifsc-protected-species-division/crputils')
 ```
-
 
 ## Components:
 
