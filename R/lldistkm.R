@@ -8,10 +8,12 @@
 #'
 #' @author Selene Fregosi
 #'
-#' @param latlon1 1-by-2 matrix of lat/lon coordinates (in decimal degrees)
-#' e.g., \code{matrix(c(30, 29.2020), nrow = 1, ncol = 2)}\cr
-#' @param latlon2 1-by-2 matrix of lat/lon coordinates (in decimal degrees)
-#' e.g., \code{matrix(c(30, 29.2020), nrow = 1, ncol = 2)}\cr
+#' @param latlon1 1-by-2 numeric vector of lat/lon coordinates (in decimal
+#' degrees) with latitude first, longitude second
+#' e.g., \code{c(21, -157)}\cr
+#' @param latlon2 1-by-2 numeric vector of lat/lon coordinates (in decimal
+#' degrees) with latitude first, longitude second
+#' e.g., \code{c(21, -157)}\cr
 #'
 #' @returns list with d1km (distance calculated by haversine formula) and d2km
 #' (distance calculated based on Pythagorean theorem)
@@ -33,11 +35,8 @@
 #' # [1] 151.8809
 #'
 #' #long distance
-#' #create input coordinates
-#' ll1 <- c(21, -157)
-#' ll2 <- c(13, 144)
 #' #calculate distance
-#' dkm <- lldistkm(ll1, ll2)
+#' dkm <- lldistkm(c(21, -157), c(13, 144))
 #' dkm
 #' # $d1km
 #' # [1] 6304.003
