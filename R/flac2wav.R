@@ -3,13 +3,15 @@
 #' @description Utility to decode FLAC files to WAV format using the command
 #' line flac.exe encoder.
 #'
-#' This function converts all .flac files in a directory to .wav using the
-#' flac.exe encoder.
+#' This function converts a directory of .flac files to .wav and saves the new
+#' files to the specified output directory. It requires the free FLAC
+#' codec/executable which can be downloaded from:
+#' \href{https://xiph.org/flac/download.html}{https://xiph.org/flac/download.html}.
 #'
 #' @author Selene Fregosi
 #'
 #' @param path_flac Character. Path to flac executable
-#' e.g., 'C:\flac-1.5.0-win\Win64\flac.exe'
+#' e.g., \code{"C:\\flac-1.5.0-win\\Win64\\flac.exe"}
 #' @param inDir Character. Path to the folder containing FLAC files
 #' @param outDir Character. Path to the folder where WAV files will be saved.
 #' *This path MUST end in a final slash. A check will ensure that it does.*

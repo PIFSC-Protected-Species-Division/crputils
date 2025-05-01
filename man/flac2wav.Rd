@@ -8,7 +8,7 @@ flac2wav(path_flac, inDir, outDir)
 }
 \arguments{
 \item{path_flac}{Character. Path to flac executable
-e.g., 'C:\flac-1.5.0-win\Win64\flac.exe'}
+e.g., \code{"C:\\flac-1.5.0-win\\Win64\\flac.exe"}}
 
 \item{inDir}{Character. Path to the folder containing FLAC files}
 
@@ -22,8 +22,10 @@ None. Writes WAV files to disk.
 Utility to decode FLAC files to WAV format using the command
 line flac.exe encoder.
 
-This function converts all .flac files in a directory to .wav using the
-flac.exe encoder.
+This function converts a directory of .flac files to .wav and saves the new
+files to the specified output directory. It requires the free FLAC
+codec/executable which can be downloaded from:
+\href{https://xiph.org/flac/download.html}{https://xiph.org/flac/download.html}.
 }
 \examples{
 flac2wav('C:\\\\users\\\\user.name\\\\programs\\\\flac-1.5.0-win\\\\Win64\\\\flac',
