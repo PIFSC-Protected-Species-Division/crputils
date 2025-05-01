@@ -28,8 +28,10 @@ codec/executable which can be downloaded from:
 \href{https://xiph.org/flac/download.html}{https://xiph.org/flac/download.html}.
 }
 \examples{
+\dontrun{
 wav2flac('C:\\\\users\\\\user.name\\\\programs\\\\flac-1.5.0-win\\\\Win64\\\\flac',
 'F:\\\\wavFiles', 'F:\\\\flacFiles\\\\');
+}
 
 }
 \seealso{

@@ -27,8 +27,10 @@
 #' @seealso \code{\link[crputils]{flac2wav}}
 #'
 #' @examples
+#' \dontrun{
 #' wav2flac('C:\\users\\user.name\\programs\\flac-1.5.0-win\\Win64\\flac',
 #' 'F:\\wavFiles', 'F:\\flacFiles\\');
+#' }
 #'
 wav2flac <- function(path_flac, inDir, outDir) {
 
