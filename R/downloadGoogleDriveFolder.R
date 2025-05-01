@@ -13,8 +13,6 @@
 #' @export
 #' @importFrom googledrive drive_ls drive_download
 #'
-#' @examples
-#'
 
 # Define the recursive download function
 downloadGoogleDriveFolder <- function(folder_id, local_path) {
