@@ -4,7 +4,7 @@
 \alias{flac2wav}
 \title{flac2wav}
 \usage{
-flac2wav(path_flac, inDir, outDir)
+flac2wav(path_flac, inDir, outDir, numCh = 1)
 }
 \arguments{
 \item{path_flac}{Character. Path to flac executable
@@ -14,6 +14,8 @@ e.g., \code{"C:\\flac-1.5.0-win\\Win64\\flac.exe"}}
 
 \item{outDir}{Character. Path to the folder where WAV files will be saved.
 \emph{This path MUST end in a final slash. A check will ensure that it does.}}
+
+\item{numCh}{numeric. Number of channels. Default is 1}
 }
 \value{
 None. Writes WAV files to disk.
@@ -28,9 +30,15 @@ codec/executable which can be downloaded from:
 \href{https://xiph.org/flac/download.html}{https://xiph.org/flac/download.html}.
 }
 \examples{
+# single channel data
 \dontrun{
 flac2wav('C:\\\\users\\\\user.name\\\\programs\\\\flac-1.5.0-win\\\\Win64\\\\flac',
 'F:\\\\flacFiles', 'F:\\\\wavFiles\\\\');
+}
+# multichannel data
+\dontrun{
+flac2wav('C:\\\\users\\\\user.name\\\\programs\\\\flac-1.5.0-win\\\\Win64\\\\flac',
+'F:\\\\flacFiles', 'F:\\\\wavFiles\\\\', 4);
 }
 
 }

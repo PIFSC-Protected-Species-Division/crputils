@@ -15,6 +15,7 @@
 #' @param inDir Character. Path to the folder containing FLAC files
 #' @param outDir Character. Path to the folder where WAV files will be saved.
 #' *This path MUST end in a final slash. A check will ensure that it does.*
+#' @param numCh numeric. Number of channels. Default is 1
 #'
 #' @return None. Writes WAV files to disk.
 #'
@@ -27,12 +28,18 @@
 #' @seealso \code{\link[crputils]{wav2flac}}
 #'
 #' @examples
+#' # single channel data
 #' \dontrun{
 #' flac2wav('C:\\users\\user.name\\programs\\flac-1.5.0-win\\Win64\\flac',
 #' 'F:\\flacFiles', 'F:\\wavFiles\\');
 #'}
+#' # multichannel data
+#' \dontrun{
+#' flac2wav('C:\\users\\user.name\\programs\\flac-1.5.0-win\\Win64\\flac',
+#' 'F:\\flacFiles', 'F:\\wavFiles\\', 4);
+#'}
 #'
-flac2wav <- function(path_flac, inDir, outDir) {
+flac2wav <- function(path_flac, inDir, outDir, numCh = 1) {
 
   # Ensure path_flac points to an executable
   if (!file.exists(path_flac)) {
@@ -89,8 +96,13 @@ flac2wav <- function(path_flac, inDir, outDir) {
   start_time <- Sys.time()
   for (i in seq_along(flac_files)) {
     in_file <- flac_files[i]
-    cmd <- paste0(path_flac, " --decode", " --keep-foreign-metadata-if-present",
-    " --output-prefix=", outDir, " ", in_file)
+    if (numCh == 1){
+      cmd <- paste0(path_flac, " --decode", " --keep-foreign-metadata-if-present",
+      " --output-prefix=", outDir, " ", in_file)
+    } else if (numCh > 1){
+      cmd <- paste0(path_flac, " --decode", " --keep-foreign-metadata-if-present",
+                    " --channel-map=none", " --output-prefix=", outDir, " ", in_file)
+    }
     status <- system(cmd, intern = TRUE)
     cat("Done with file", i, "of", length(flac_files), "-", basename(in_file), "\n")
   }
