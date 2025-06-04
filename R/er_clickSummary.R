@@ -97,9 +97,9 @@ er_clickSummary <- function(asF, eventUID){
     MedianPeak         <- formatC(median(goodClicks$peak, na.rm = TRUE),
                                   digits = 3, format = 'fg')
     MedianPeak_p25     <- formatC(quantile(goodClicks$peak, probs = .25,
-                                        na.rm = TRUE), digits = 0, format = 'fg')
+                                        na.rm = TRUE), digits = 3, format = 'fg')
     MedianPeak_p75     <- formatC(quantile(goodClicks$peak, probs = .75,
-                                        na.rm = TRUE), digits = 0, format = 'fg')
+                                        na.rm = TRUE), digits = 3, format = 'fg')
     MedianCenter3dB    <- formatC(median(goodClicks$centerkHz_3dB, na.rm = TRUE),
                                   digits = 3, format = 'fg')
     MedianCenter10dB   <- formatC(median(goodClicks$centerkHz_10dB, na.rm = TRUE),
