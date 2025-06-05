@@ -31,12 +31,12 @@
 #' # single channel data
 #' \dontrun{
 #' wav2flac('C:\\users\\user.name\\programs\\flac-1.5.0-win\\Win64\\flac',
-#' 'F:\\wavFiles', 'F:\\flacFiles\\');
+#' 'F:\\wavFiles', 'F:\\flacFiles\\')
 #' }
 #' # multichannel data
 #' \dontrun{
 #' wav2flac('C:\\users\\user.name\\programs\\flac-1.5.0-win\\Win64\\flac',
-#' 'F:\\wavFiles', 'F:\\flacFiles\\', 4);
+#' 'F:\\wavFiles', 'F:\\flacFiles\\', 4)
 #' }
 #'
 wav2flac <- function(path_flac, inDir, outDir, numCh = 1) {
@@ -97,11 +97,11 @@ wav2flac <- function(path_flac, inDir, outDir, numCh = 1) {
   for (i in seq_along(wav_files)) {
     in_file <- wav_files[i]
     if (numCh == 1){
-      cmd <- paste0(path_flac, " --keep-foreign-metadata-if-present --output-prefix=",
+      cmd <- paste0(path_flac, " --keep-foreign-metadata-if-present", " --output-prefix=",
                     outDir, " ", in_file)
     } else if (numCh > 1){
-      cmd <- paste0(path_flac, " --keep-foreign-metadata-if-present --channel-map=none
-                    --output-prefix=", outDir, " ", in_file)
+      cmd <- paste0(path_flac, " --keep-foreign-metadata-if-present", " --channel-map=none",
+                   " --output-prefix=", outDir, " ", in_file)
     }
     status <- system(cmd, intern = TRUE)
     cat("Done with file", i, "of", length(wav_files), "-", basename(in_file), "\n")

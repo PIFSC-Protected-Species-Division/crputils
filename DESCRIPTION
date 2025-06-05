@@ -1,6 +1,6 @@
 Package: crputils
 Title: Miscellaneous R Utilities Useful to CRP
-Version: 0.2.0010
+Version: 0.3.0010
 Date: 2025-06-04
 Authors@R: c(
     SF = person("Selene", "Fregosi", email = "selene.fregosi@noaa.gov", 

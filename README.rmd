@@ -59,6 +59,33 @@ remotes::install_github('pifsc-protected-species-division/crputils')
 
 ## Components:
 
+### FLAC converter
+
+See `exampleWorkflows/workflow_flacConversion.R` for an example script
+
+#### Convert a directory of WAV files to FLAC 
+
+```
+path_flac <- "" # will prompt to find path. e.g., 'C:/users/user.name/programs/flac-1.5.0-win/Win64/flac.exe'
+inDir <- 'F:\\wavFiles'
+outDir <- 'F:\\flacFiles\\' # must have final slash!
+numCh <- 4 # number of channels. Optional, default is 1
+wav2flac(path_flac, inDir, outDir, numCh)
+```
+
+#### Convert a directory of FLAC files to WAV
+```
+path_flac <- "" # will prompt to find path. e.g., 'C:/users/user.name/programs/flac-1.5.0-win/Win64/flac.exe'
+inDir <- 'F:\\flacFiles'
+outDir <- 'F:\\wavFiles\\' # must have final slash!
+numCh <- 4 # number of channels. Optional, default is 1
+flac2wav(path_flac, inDir, outDir, numCh)
+```
+
+### Acoustic event summary report functions
+
+Everything that starts with `er_` is used in event summary creation.
+
 ### Latitude/longitude format conversions
 
 Functions to convert between different latitude/longitude formats. Includes:
