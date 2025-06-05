@@ -27,6 +27,13 @@ er_concatenatedSlope <- function(cl, quantLimit = NULL){
   # extract spec data for just good SNR clicks
   goodSpec <- cl$spec$allSpec[, cl$spec$UID %in% cl$goodClicks$UID]
 
+  # need at least 2 clicks to run the linear regression (although results will
+  # be pretty meaningless with only 2 clicks...)
+  if (cl$nGoodClicks <= 1){
+    cat('Insufficient clicks to calculate slope\n')
+    return(NULL)
+  }
+
   # find and sort peaks
   peaksIdx <- apply(goodSpec, 2, which.max)
   peaks <- cl$spec$freq[peaksIdx]/1000
@@ -49,6 +56,12 @@ er_concatenatedSlope <- function(cl, quantLimit = NULL){
 
 
   # df <- data.frame(index = index, sorted = sorted)
+
+  # check that enough clicks remain within quantile limits if used
+  if (length(peakFreq) <= 1 | length(index) <= 1){
+    cat('Insufficient clicks to calculate slope\n')
+    return(NULL)
+  }
 
   # run linear regression
   cs <- lm(peakFreq ~ index)
