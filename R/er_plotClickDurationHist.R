@@ -18,7 +18,7 @@ er_plotClickDurationHist <- function(cl){
   hist(cl$goodClicks$duration,
        breaks = seq(from = 0, to = max(cl$goodClicks$duration) + 100,
                     by = 100), main = 'Click duration', sub = subStr,
-       xlab = expression(paste('duration [', mu, 's]')))
+       xlab = expression(paste('duration (', mu, 's)')))
   abline(v = median(cl$goodClicks$duration), lty = 2, lwd = 2, col = 'black')
   legend('topright', legend = 'median', lty = 2, lwd = 2, col = 'black')
 }

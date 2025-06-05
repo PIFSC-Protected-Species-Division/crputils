@@ -86,7 +86,7 @@ er_concatenatedSlope <- function(cl, quantLimit = NULL){
 
   # plot trend line
   plot(sorted, type = "p", col = "grey50", pch = 16,
-       xlab = "Click (sorted by peak frequency)", ylab = "Peak frequency [kHz]",
+       xlab = "Click (sorted by peak frequency)", ylab = "Peak frequency (kHz)",
        main = plotTitle)
   if (!is.null(quantLimit)){
     points(index, peakFreq, type = "p", col = "grey80", pch = 16, cex = 0.5)
