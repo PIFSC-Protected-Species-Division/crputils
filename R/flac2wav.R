@@ -30,12 +30,12 @@
 #' @examples
 #' # single channel data
 #' \dontrun{
-#' flac2wav('C:\\users\\user.name\\programs\\flac-1.5.0-win\\Win64\\flac',
+#' flac2wav('C:\\users\\user.name\\programs\\flac-1.5.0-win\\Win64\\flac.exe',
 #' 'F:\\flacFiles', 'F:\\wavFiles\\');
 #'}
 #' # multichannel data
 #' \dontrun{
-#' flac2wav('C:\\users\\user.name\\programs\\flac-1.5.0-win\\Win64\\flac',
+#' flac2wav('C:\\users\\user.name\\programs\\flac-1.5.0-win\\Win64\\flac.exe',
 #' 'F:\\flacFiles', 'F:\\wavFiles\\', 4);
 #'}
 #'
@@ -43,8 +43,8 @@ flac2wav <- function(path_flac, inDir, outDir, numCh = 1) {
 
   # Ensure path_flac points to an executable
   if (!file.exists(path_flac)) {
-    # stop("flac.exe not found. Please provide a valid path to flac.exe but without '.exe'")
-    message("flac.exe not found. Please provide a valid path to flac.exe but without '.exe'")
+    # stop("flac.exe not found. Please provide a valid path to flac.exe")
+    message("flac.exe not found. Please provide a valid path to flac.exe")
 
     # Use tcltk::tk_choose.dir to select the proper folder
     if (!requireNamespace("tcltk", quietly = TRUE)) {

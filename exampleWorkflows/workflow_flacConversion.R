@@ -22,5 +22,5 @@ inDir <- "C:\\users/user.name\\flac_test\\flac"
 outDir <- "C:\\users/user.name\\flac_test\\wavOut"
 numCh <- 1
 
-wav2flac(path_flac, inDir, outDir, numCh)
+flac2wav(path_flac, inDir, outDir, numCh)
 

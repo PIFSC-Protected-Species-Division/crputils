@@ -32,12 +32,12 @@ codec/executable which can be downloaded from:
 \examples{
 # single channel data
 \dontrun{
-wav2flac('C:\\\\users\\\\user.name\\\\programs\\\\flac-1.5.0-win\\\\Win64\\\\flac',
+wav2flac('C:\\\\users\\\\user.name\\\\programs\\\\flac-1.5.0-win\\\\Win64\\\\flac.exe',
 'F:\\\\wavFiles', 'F:\\\\flacFiles\\\\')
 }
 # multichannel data
 \dontrun{
-wav2flac('C:\\\\users\\\\user.name\\\\programs\\\\flac-1.5.0-win\\\\Win64\\\\flac',
+wav2flac('C:\\\\users\\\\user.name\\\\programs\\\\flac-1.5.0-win\\\\Win64\\\\flac.exe',
 'F:\\\\wavFiles', 'F:\\\\flacFiles\\\\', 4)
 }
 
