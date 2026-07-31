@@ -4,17 +4,17 @@
 \alias{er_clickSummary}
 \title{er_clickSummary}
 \usage{
-er_clickSummary(asF, eventUID)
+er_clickSummary(acStF, eventUID)
 }
 \arguments{
-\item{asF}{AcousticStudy that has been filtered to remove noise}
+\item{acStF}{AcousticStudy that has been filtered to remove noise}
 
 \item{eventUID}{ID of a single acoustic event}
 }
 \value{
 'cl' list with 7 elements: total number of clicks, PAMpal click data
 for all clicks, PAMpal spec data for all clicks (output from
-PAMpal::calculateAvereageSpectra()), snr for all clicks, the nubmer of clicks
+PAMpal::calculateAverageSpectra()), snr for all clicks, the number of clicks
 above the 15 dB SNR threshold, PAMpal click data for these 'good' clicks
 only, and 'mt', the formatted table of median summary statistics
 }
@@ -24,9 +24,16 @@ within the event_summary_report Rmd. Summarizes total number of clicks,
 calculates SNR and defines 'good clicks' as those with SNR > 15 dB, and
 calculates some summary statistics (peak and center frequency, 3 and 10 dB
 bandwidths, and click duration) output into a nicely formatted table.
+
+last updated: 31 July 2026
 }
 \examples{
 \dontrun{
 cl <- er_clickSummary(detsFilt, eventUID)
 }
+
+}
+\seealso{
+\code{\link[=er_plotClickDurationHist]{er_plotClickDurationHist()}}
+\code{\link[=er_plotClickSNRHist]{er_plotClickSNRHist()}}
 }

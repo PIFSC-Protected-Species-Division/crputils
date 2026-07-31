@@ -7,13 +7,27 @@
 er_plotClickDurationHist(cl)
 }
 \arguments{
-\item{cl}{list returned by clickSummary() that has a elements spec and snr}
+\item{cl}{list returned by er_clickSummary() containing elements
+goodClicks (data frame with column duration) and nGoodClicks (count)}
+}
+\value{
+creates a plot
 }
 \description{
 Plot histogram of click durations of high SNR clicks only
+
+last updated: 31 July 2026
 }
 \examples{
 \dontrun{
-er_plotClickDurationHist
+cl <- er_clickSummary(acSt)
+er_plotClickDurationHist(cl)
 }
+
+}
+\seealso{
+\code{\link[=er_clickSummary]{er_clickSummary()}}
+}
+\author{
+Selene Fregosi \email{selene.fregosi@noaa.gov}
 }
