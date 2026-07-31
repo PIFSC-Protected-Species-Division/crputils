@@ -1,17 +1,27 @@
-filterClicks <- function(as){
-  #' filterClicks
+er_filterClicks <- function(as){
+  #' er_filterClicks
   #' 
-  #' @description  
+  #' @description  filter all click detections to remove clicks that are 
+  #' unlikely to be odontocetes and are likely noise. Filter settings were tuned
+  #' by Jennifer McCullough, see McCullough et al. 2021
+  #' 
+  #' Filter settings:
+  #'    Remove clicks with 10dB bandwidth < 5 kHz
+  #'    Remove clicks with peak frequency below 5 kHz and above 80 kHz
+  #'    Remove clicks with durations of less than 2 ms or greater than 1000 ms
+  #'    For each individual click detector (classifier), remove clicks with peak
+  #'       frequencies outside the specified limits (remove erroneous 
+  #'       missclassifications)
   #' 
   #' author: Selene Fregosi selene.fregosi [at] noaa.gov
-  #' last updated: 19 April 2024
+  #' last updated: 31 July 2026
   #'
   #' @param as AcousticStudy object generated with processPgDetections()
   #' 
   #' @return an AcousticStudy object containing only filtered detections
   #'
   #' @examples
-  #' detsFiltered <- filterClicks(dets)
+  #' detsFiltered <- er_filterClicks(dets)
   #' 
   #' ######################################################################
 
