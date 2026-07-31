@@ -1,7 +1,7 @@
 Package: crputils
 Title: Miscellaneous R Utilities Useful to CRP
-Version: 0.3.0022
-Date: 2025-12-19
+Version: 0.3.0023
+Date: 2026-07-31
 Authors@R: c(
     SF = person("Selene", "Fregosi", email = "selene.fregosi@noaa.gov", 
     role = c("aut", "cre"), comment = c(ORCID = "0000-0002-2685-3736")),
@@ -15,10 +15,10 @@ Description: A collection of miscellaneous utilities that are useful for various
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Imports:
-  utils, lubridate, stringr, swfscDAS, googledrive, PAMpal, PamBinaries
+  utils, lubridate, dplyr, stringr, swfscDAS, googledrive, PAMpal, PamBinaries
 Remotes: SWFSC/swfscDAS
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0
