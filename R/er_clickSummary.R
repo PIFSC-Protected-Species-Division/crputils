@@ -6,31 +6,37 @@
 #' calculates some summary statistics (peak and center frequency, 3 and 10 dB
 #' bandwidths, and click duration) output into a nicely formatted table.
 #'
-#' @param asF AcousticStudy that has been filtered to remove noise
+#' last updated: 31 July 2026
+#'
+#' @param acStF AcousticStudy that has been filtered to remove noise
 #' @param eventUID ID of a single acoustic event
 #'
 #' @return 'cl' list with 7 elements: total number of clicks, PAMpal click data
 #' for all clicks, PAMpal spec data for all clicks (output from
-#' PAMpal::calculateAvereageSpectra()), snr for all clicks, the nubmer of clicks
+#' PAMpal::calculateAverageSpectra()), snr for all clicks, the number of clicks
 #' above the 15 dB SNR threshold, PAMpal click data for these 'good' clicks
 #' only, and 'mt', the formatted table of median summary statistics
 #'
-#' @export
-#' @importFrom PAMpal getClickData calculateAverageSpectra
-#' @importFrom stats median quantile setNames
+#' @seealso
+#' [er_plotClickDurationHist()]
+#' [er_plotClickSNRHist()]
 #'
 #' @examples
 #' \dontrun{
 #' cl <- er_clickSummary(detsFilt, eventUID)
 #' }
+#'
+#' @importFrom PAMpal getClickData calculateAverageSpectra
+#' @importFrom stats median quantile setNames
+#' @export
 
-er_clickSummary <- function(asF, eventUID){
+er_clickSummary <- function(acStF, eventUID){
 
   # set up output list
   cl <- list()
 
   # pull just click data for this event
-  clicks <- PAMpal::getClickData(asF[[eventUID]])
+  clicks <- PAMpal::getClickData(acStF[[eventUID]])
   if (!is.null(clicks)){
     # Order clicks by time
     clicks <- clicks[order(clicks$UTC),]
@@ -49,7 +55,7 @@ er_clickSummary <- function(asF, eventUID){
 
   if (!is.null(clicks)){
     # run specs for SNR calcs
-    spec <- PAMpal::calculateAverageSpectra(asF, evNum = eventUID, wl = 256,
+    spec <- PAMpal::calculateAverageSpectra(acStF, evNum = eventUID, wl = 256,
                                             channel = 1, norm = TRUE,
                                             noise = TRUE, snr = 15,
                                             plot = FALSE)

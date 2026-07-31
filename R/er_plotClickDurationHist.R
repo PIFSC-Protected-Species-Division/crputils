@@ -2,16 +2,26 @@
 #'
 #' @description Plot histogram of click durations of high SNR clicks only
 #'
-#' @param cl list returned by clickSummary() that has a elements spec and snr
+#' last updated: 31 July 2026
 #'
-#' @export
-#' @importFrom graphics hist abline legend
-#' @importFrom stats median
+#' @param cl list returned by er_clickSummary() containing elements
+#'   goodClicks (data frame with column duration) and nGoodClicks (count)
+#'
+#' @return creates a plot
+#'
+#' @author Selene Fregosi \email{selene.fregosi@noaa.gov}
+#'
+#' @seealso [er_clickSummary()]
 #'
 #' @examples
 #' \dontrun{
-#' er_plotClickDurationHist
+#' cl <- er_clickSummary(acSt)
+#' er_plotClickDurationHist(cl)
 #' }
+#'
+#' @importFrom graphics hist abline legend
+#' @importFrom stats median
+#' @export
 
 er_plotClickDurationHist <- function(cl){
   subStr <- paste0('(high SNR clicks, n=', cl$nGoodClicks, ')')
