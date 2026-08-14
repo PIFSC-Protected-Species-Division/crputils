@@ -26,7 +26,7 @@
 #' cl <- er_clickSummary(detsFilt, eventUID)
 #' }
 #'
-#' @importFrom PAMpal getClickData calculateAverageSpectra
+#' @importFrom PAMpal getClickData calculateAverageSpectra is.AcousticEvent
 #' @importFrom stats median quantile setNames
 #' @export
 
@@ -36,7 +36,13 @@ er_clickSummary <- function(acStF, eventUID){
   cl <- list()
 
   # pull just click data for this event
-  clicks <- PAMpal::getClickData(acStF[[eventUID]])
+  # allow for single event input vs acoustic study
+  if(is.AcousticEvent(acStF)) {
+    clicks <- getClickData(acStF)
+    eventUID <- 1
+  } else {
+    clicks <- PAMpal::getClickData(acStF[[eventUID]])
+  }
   if (!is.null(clicks)){
     # Order clicks by time
     clicks <- clicks[order(clicks$UTC),]
