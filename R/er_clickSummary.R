@@ -22,6 +22,7 @@
 #' @seealso
 #' [er_plotClickDurationHist()]
 #' [er_plotClickSNRHist()]
+#' [er_plotSpectra()]
 #'
 #' @examples
 #' \dontrun{

@@ -11,8 +11,9 @@
 #' Default is 15 dB
 #'
 #'#' @seealso
-#' [er_plotClickDurationHist()]
 #' [er_clickSummary()]
+#' [er_plotClickDurationHist()]
+#' [er_plotSpectra()]
 #'
 #' @examples
 #' \dontrun{
