@@ -6,16 +6,18 @@
 #' calculates some summary statistics (peak and center frequency, 3 and 10 dB
 #' bandwidths, and click duration) output into a nicely formatted table.
 #'
-#' last updated: 31 July 2026
+#' last updated: 20 August 2026
 #'
 #' @param acStF AcousticStudy that has been filtered to remove noise
 #' @param eventUID ID of a single acoustic event
+#' @param snrThreshold threshold for "good" clicks with snr equal to or above
+#' this threshold (in dB). Default is 15
 #'
 #' @return 'cl' list with 7 elements: total number of clicks, PAMpal click data
 #' for all clicks, PAMpal spec data for all clicks (output from
-#' PAMpal::calculateAverageSpectra()), snr for all clicks, the number of clicks
-#' above the 15 dB SNR threshold, PAMpal click data for these 'good' clicks
-#' only, and 'mt', the formatted table of median summary statistics
+#' PAMpal::calculateAverageSpectra()), the number of clicks above the specified
+#' SNR threshold (default 15 dB if not specified), PAMpal click data for these
+#' 'good' clicks only, and 'mt', a formatted table of median summary statistics
 #'
 #' @seealso
 #' [er_plotClickDurationHist()]
@@ -30,7 +32,7 @@
 #' @importFrom stats median quantile setNames
 #' @export
 
-er_clickSummary <- function(acStF, eventUID){
+er_clickSummary <- function(acStF, eventUID, snrThreshold = 15){
 
   # set up output list
   cl <- list()
@@ -63,42 +65,43 @@ er_clickSummary <- function(acStF, eventUID){
     # run specs for SNR calcs
     spec <- PAMpal::calculateAverageSpectra(acStF, evNum = eventUID, wl = 256,
                                             channel = 1, norm = TRUE,
-                                            noise = TRUE, snr = 15,
+                                            noise = TRUE, snr = snrThreshold,
                                             plot = FALSE)
 
-    # follows snr calc approach of calculateAvereageSpectra but done manually to
-    # save the output
+    # # follows snr calc approach of calculateAvereageSpectra but done manually to
+    # # save the output
     # if no clicks are above SNR this will be skipped
     if (!is.null(spec)){
-      snr <- array(NA, length(spec$UID))
-      for (iClick in 1:length(spec$UID)) {
+    #   snr <- array(NA, length(spec$UID))
+    #   for (iClick in 1:length(spec$UID)) {
+    #
+    #     wherePeak <- which.max(spec$allSpec[1:nrow(spec$allSpec), iClick])
+    #     if (length(wherePeak) == 0) {
+    #       snr[iClick] <- NA
+    #       next
+    #     }
+    #     if (is.na(spec$allNoise[wherePeak, iClick])) {
+    #       snr[iClick] <- Inf
+    #       next
+    #     }
+    #     snr[iClick] <- spec$allSpec[wherePeak, iClick] -
+    #       spec$allNoise[wherePeak, iClick]
+    #   }
+    #   # # remove an Infs or NAs
+    #   # snr <- snr[is.finite(snr)]
 
-        wherePeak <- which.max(spec$allSpec[1:nrow(spec$allSpec), iClick])
-        if (length(wherePeak) == 0) {
-          snr[iClick] <- NA
-          next
-        }
-        if (is.na(spec$allNoise[wherePeak, iClick])) {
-          snr[iClick] <- Inf
-          next
-        }
-        snr[iClick] <- spec$allSpec[wherePeak, iClick] -
-          spec$allNoise[wherePeak, iClick]
-      }
-      # # remove an Infs or NAs
-      # snr <- snr[is.finite(snr)]
-
+      # pull out the high snr clicks
       # for summary stats - only use clicks with valid snr > 15 dB
-      goodUIDs <- spec$UID[is.finite(snr) & snr >= 15]
+      goodUIDs <- spec$UID[is.finite(spec$snrVals) & spec$snrVals >= snrThreshold]
       goodClicks <- clicks[clicks$UID %in% goodUIDs, , drop = FALSE]
     } else if (is.null(spec)){
-      cat('No clicks above SNR.\n')
+      cat(paste0('No clicks above SNR threshold of ', snrThreshold, ' dB.\n'))
     }
   }
 
   # add to output
   cl$spec <- spec
-  cl$snr <- snr
+  # cl$snr <- snr
   cl$nGoodClicks <- length(goodClicks$UID)
   cl$goodClicks <- goodClicks
 
