@@ -7,6 +7,7 @@ badge](https://pifsc-protected-species-division.r-universe.dev/badges/crputils)]
 # crputils
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 Miscellaneous R utilities used by CRP
@@ -16,6 +17,8 @@ What?! It’s an R package!!
 ## Installation
 
 ### R-Universe
+
+<https://github.com/r-universe/pifsc-protected-species-division>
 
 #### Binary
 

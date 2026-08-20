@@ -31,6 +31,8 @@ What?! It's an R package!!
 
 ### R-Universe
 
+[https://github.com/r-universe/pifsc-protected-species-division](https://github.com/r-universe/pifsc-protected-species-division)
+
 #### Binary
 
 ```{r, eval = FALSE}
