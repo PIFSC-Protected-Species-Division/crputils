@@ -6,7 +6,7 @@
 \usage{
 er_plotConcatSpec(
   spec,
-  flim = c(0, 100),
+  flim = NULL,
   snrThreshold = 15,
   sort = TRUE,
   filterfrom_khz = 0,
@@ -14,7 +14,7 @@ er_plotConcatSpec(
   q = 0.01,
   brightness = 0,
   contrast = 0,
-  cmap = hcl.colors("YlOrRd", rev = TRUE),
+  cmap = hcl.colors(30, "YlOrRd", rev = TRUE),
   showBreaks = FALSE
 )
 }
@@ -22,8 +22,8 @@ er_plotConcatSpec(
 \item{spec}{output of \code{\link[PAMpal:calculateAverageSpectra]{PAMpal::calculateAverageSpectra()}} and includes
 variables freq, avgSpec, avgNoise, allSpec, and snrVals}
 
-\item{flim}{optional argument for frequency limits. Default is 0 to 100.
-Define with format \code{c(0, 100)}}
+\item{flim}{optional argument for frequency limits. Default is full frequency
+range of recordings. Define with format \code{c(0, 100)}, specify in kHz}
 
 \item{snrThreshold}{optional argument for SNR threshold (in dB) for filtering
 which clicks to include in plot. Default is 15}

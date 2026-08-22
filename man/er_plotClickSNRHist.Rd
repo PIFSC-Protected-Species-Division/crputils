@@ -4,11 +4,11 @@
 \alias{er_plotClickSNRHist}
 \title{er_plotClickSNRHist}
 \usage{
-er_plotClickSNRHist(cl, snrThreshold = 15)
+er_plotClickSNRHist(spec, snrThreshold = 15)
 }
 \arguments{
-\item{cl}{list returned by clickSummary() that has element spec that has
-element snrVals}
+\item{spec}{output of \code{\link[PAMpal:calculateAverageSpectra]{PAMpal::calculateAverageSpectra()}} that includes
+variable snrVals}
 
 \item{snrThreshold}{SNR in dB to plot as the threshold for 'good' clicks.
 Default is 15 dB
@@ -23,11 +23,11 @@ Default is 15 dB
 Plot histogram of click SNR for all clicks with a vertical
 dashed line at the specified cutoff
 
-last updated: 21 August 2026
+last updated: 22 August 2026
 }
 \examples{
 \dontrun{
-er_plotClickSNRHist(cl, 15)
+er_plotClickSNRHist(spec, snrThreshold = 15)
 }
 
 }

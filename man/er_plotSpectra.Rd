@@ -4,7 +4,7 @@
 \alias{er_plotSpectra}
 \title{er_plotSpectra}
 \usage{
-er_plotSpectra(spec, refSpecs = NULL, xLims = c(0, 100), snrThreshold = 15)
+er_plotSpectra(spec, refSpecs = NULL, flim = NULL, snrThreshold = 15)
 }
 \arguments{
 \item{spec}{output of \code{\link[PAMpal:calculateAverageSpectra]{PAMpal::calculateAverageSpectra()}} and includes
@@ -13,8 +13,8 @@ variables freq, avgSpec, avgNoise, allSpec, and snrVals}
 \item{refSpecs}{optional argument with list of reference spectra to include
 as overlays in the plot}
 
-\item{xLims}{optional argument for frequency limits. Default is 0 to 100.
-Define with format c(0, 100)}
+\item{flim}{optional argument for frequency limits. Default is full frequency
+range of recordings. Define with format \code{c(0, 100)}, specify in kHz}
 
 \item{snrThreshold}{optional argument for SNR threshold (in dB) for filtering
 clicks used in calculation of median spectrum. Default is 15}
@@ -23,11 +23,11 @@ clicks used in calculation of median spectrum. Default is 15}
 Plot spectra of all clicks - mean, median, noise, and any
 specified reference spectra
 
-last updated: 21 August 2026
+last updated: 22 August 2026
 }
 \examples{
 \dontrun{
-er_plotSpectra(cl, refSpecs = refSpecs, xLims = c(0,100), snrThreshold = 15)
+er_plotSpectra(spec, refSpecs = refSpecs, flim = c(0,100), snrThreshold = 15)
 }
 
 }
