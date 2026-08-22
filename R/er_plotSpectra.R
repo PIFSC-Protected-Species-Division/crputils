@@ -3,15 +3,14 @@
 #' @description Plot spectra of all clicks - mean, median, noise, and any
 #' specified reference spectra
 #'
-#' last updated: 21 August 2026
+#' last updated: 22 August 2026
 #'
-#' @param snrThreshold SNR in dB to plot as the threshold for 'good' clicks
 #' @param spec output of [PAMpal::calculateAverageSpectra()] and includes
 #' variables freq, avgSpec, avgNoise, allSpec, and snrVals
 #' @param refSpecs optional argument with list of reference spectra to include
 #' as overlays in the plot
-#' @param xLims optional argument for frequency limits. Default is 0 to 100.
-#' Define with format c(0, 100)
+#' @param flim optional argument for frequency limits. Default is full frequency
+#' range of recordings. Define with format \code{c(0, 100)}, specify in kHz
 #' @param snrThreshold optional argument for SNR threshold (in dB) for filtering
 #' clicks used in calculation of median spectrum. Default is 15
 #'
@@ -23,7 +22,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' er_plotSpectra(cl, refSpecs = refSpecs, xLims = c(0,100), snrThreshold = 15)
+#' er_plotSpectra(spec, refSpecs = refSpecs, flim = c(0,100), snrThreshold = 15)
 #' }
 #'
 #' @importFrom graphics lines abline legend
@@ -31,14 +30,28 @@
 #' @export
 
 
-er_plotSpectra <- function(spec, refSpecs = NULL, xLims = c(0, 100), snrThreshold = 15){
+er_plotSpectra <- function(spec, refSpecs = NULL, flim = NULL, snrThreshold = 15){
 
-  # Peak freq as calculated by calculateAvgerageSpectra -for subtitle
-  peakFreq <- round(spec$freq[which.max(spec$avgSpec)]/1000, 2)
+  # define some stuff
+  unitLab <- "Frequency (kHz)"
+  unitFactor <- 1/1000
+  plotTitle <- "Average Spectrum"
 
-  plot(1, type = 'n', xlim = xLims, ylim = c(min(spec$avgSpec), 0),
-       xlab = 'Frequency (kHz)', ylab = 'Normalized Magnitude (dB)',
-       main = 'Average Spectrum', sub = paste0('Peak: ', peakFreq, 'kHz'))
+  # set frequency limits
+  if (is.null(flim)) {
+    plotFreq <- rep(TRUE, length(spec$freq))
+  } else {
+    plotFreq <- spec$freq >= flim[1]/unitFactor & spec$freq <= flim[2]/unitFactor
+  }
+
+  # Peak freq as calculated by calculateAvgerageSpectra - for subtitle
+  peakFreq <- round(spec$freq[which.max(spec$avgSpec)]*unitFactor, 2)
+
+  # set up plot
+  plot(1, type = 'n', xlim = range(spec$freq[plotFreq])*unitFactor,
+       ylim = c(min(spec$avgSpec), 0), xlab = unitLab,
+       ylab = 'Normalized Magnitude (dB)', main = plotTitle,
+       sub = paste0('Peak: ', peakFreq, 'kHz'))
 
   # add grid lines for frequency at 10 kHz intervals
   for (iline in ((0:15)*10)) {
@@ -57,17 +70,17 @@ er_plotSpectra <- function(spec, refSpecs = NULL, xLims = c(0, 100), snrThreshol
   }
 
   # plot noise
-  lines(spec$freq/1000, spec$avgNoise, lty = 3, lwd = 2)
+  lines(spec$freq*unitFactor, spec$avgNoise, lty = 3, lwd = 2)
   # plot avg spectrum
-  lines(spec$freq/1000, spec$avgSpec, lty = 2, lwd = 3)
+  lines(spec$freq*unitFactor, spec$avgSpec, lty = 2, lwd = 3)
   # also plot median spectrum
   # have to manually trim to just high SNR
   loudSpec <- spec$allSpec[, is.finite(spec$snrVals) &
-                                spec$snrVals >= snrThreshold, drop = FALSE]
+                             spec$snrVals >= snrThreshold, drop = FALSE]
   medSpec <- 20*log10(apply(loudSpec, 1, function(y) {
     median(10^(y/20), na.rm = TRUE)}))
   medSpecNorm <- medSpec - max(medSpec, na.rm = TRUE)
-  lines(spec$freq/1000, medSpecNorm, lty = 1, lwd = 3)
+  lines(spec$freq*unitFactor, medSpecNorm, lty = 1, lwd = 3)
 
   # add legend
   if (!is.null(refSpecs)){
