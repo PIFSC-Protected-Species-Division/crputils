@@ -46,11 +46,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' cl <- er_clickSummary(detsFilt, eventUID)
+#' cl <- er_clickSummary(acStFilt, eventUID)
+#' # use all defaults
+#' er_plotConcatSpec(cl$spec)
+#' # modify plot appearance
+#' er_plotConcatSpec(cl$spec, q = 0.05, brightness = 25, contrast = -50)
 #' }
 #'
-#' @importFrom PAMpal getClickData calculateAverageSpectra is.AcousticEvent
-#' @importFrom stats median quantile setNames
+#' @importFrom graphics axis image title lines
+#' @importFrom grDevices hcl.colors
 #' @export
 
 er_plotConcatSpec <- function(spec, flim = c(0, 100), snrThreshold = 15,
@@ -58,16 +62,6 @@ er_plotConcatSpec <- function(spec, flim = c(0, 100), snrThreshold = 15,
                               q = 0.01, brightness = 0, contrast = 0,
                               cmap = hcl.colors("YlOrRd", rev = TRUE),
                               showBreaks = FALSE){
-
-
-  function (x, evNum = 1, calibration = NULL, wl = 512, channel = 1:2,
-            filterfrom_khz = 0, filterto_khz = NULL, sr = NULL, snr = 0,
-            norm = TRUE, plot = TRUE, noise = FALSE, decimate = 1, sort = FALSE,
-            mode = "spec", title = NULL, ylim = NULL, flim = NULL, cmap = hcl.colors(30,
-                                                                                     "YlOrRd", rev = TRUE),
-            brightness = 0, contrast = 0,
-            q = 0.01, showBreaks = TRUE, ...)
-
 
   # define some stuff
   unitLab <- "Frequency (kHz)"
@@ -152,7 +146,7 @@ er_plotConcatSpec <- function(spec, flim = c(0, 100), snrThreshold = 15,
       lines(x = rep(evStarts[b] + 0.5, 2), y = c(0,
                                                  max(freq[plotFreq] * unitFactor)), lwd = 2)
     }
-}
+  }
 
 
 }
