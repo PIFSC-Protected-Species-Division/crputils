@@ -1,11 +1,13 @@
 Package: crputils
 Title: Miscellaneous R Utilities Useful to CRP
-Version: 0.3.0026
-Date: 2026-08-20
+Version: 0.3.0050
+Date: 2026-08-21
 Authors@R: c(
     SF = person("Selene", "Fregosi", email = "selene.fregosi@noaa.gov", 
     role = c("aut", "cre"), comment = c(ORCID = "0000-0002-2685-3736")),
 	YB = person("Yvonne", "Barkley", email = "yvonne.barkley@noaa.gov",
+	role = c("aut")),
+	TS = person("Taiki", "Sakai", email = "taiki.sakai@noaa.gov",
 	role = c("aut")))
 Maintainer: Selene Fregosi <selene.fregosi@noaa.gov>
 Description: A collection of miscellaneous utilities that are useful for various 
@@ -21,4 +23,4 @@ Remotes: SWFSC/swfscDAS
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0
