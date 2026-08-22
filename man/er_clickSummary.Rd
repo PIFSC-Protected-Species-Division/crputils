@@ -4,10 +4,10 @@
 \alias{er_clickSummary}
 \title{er_clickSummary}
 \usage{
-er_clickSummary(acStF, eventUID, snrThreshold = 15)
+er_clickSummary(acSt, eventUID, snrThreshold = 15)
 }
 \arguments{
-\item{acStF}{AcousticStudy that has been filtered to remove noise}
+\item{acSt}{AcousticStudy produced with \code{\link[PAMpal:processPgDetections]{PAMpal::processPgDetections()}}}
 
 \item{eventUID}{ID of a single acoustic event}
 
@@ -17,22 +17,23 @@ this threshold (in dB). Default is 15}
 \value{
 'cl' list with 7 elements: total number of clicks, PAMpal click data
 for all clicks, PAMpal spec data for all clicks (output from
-PAMpal::calculateAverageSpectra()), the number of clicks above the specified
-SNR threshold (default 15 dB if not specified), PAMpal click data for these
-'good' clicks only, and 'mt', a formatted table of median summary statistics
+\code{\link[PAMpal:calculateAverageSpectra]{PAMpal::calculateAverageSpectra()}}), the number of clicks above snrThreshold
+(default 15 dB if not specified), PAMpal click data for these 'good' clicks
+only, and 'mt', a formatted table of median summary statistics
 }
 \description{
 Summarize clicks for a single AcousticStudy event, to be used
-within the event_summary_report Rmd. Summarizes total number of clicks,
-calculates SNR and defines 'good clicks' as those with SNR > 15 dB, and
-calculates some summary statistics (peak and center frequency, 3 and 10 dB
-bandwidths, and click duration) output into a nicely formatted table.
+within the event_summary_report Rmd. Summarizes total number of clicks, runs
+\code{\link[PAMpal:calculateAverageSpectra]{PAMpal::calculateAverageSpectra()}}, identifies 'good clicks' as those with
+a pseudo-snr above input snrThreshold, calculates some event-level summary
+statistics (peak and center frequency, 3 and 10 dB bandwidths, click
+duration) and outputs the raw click data and a formatted summary table
 
-last updated: 20 August 2026
+last updated: 22 August 2026
 }
 \examples{
 \dontrun{
-cl <- er_clickSummary(detsFilt, eventUID)
+cl <- er_clickSummary(acStFilt, eventUID)
 }
 
 }

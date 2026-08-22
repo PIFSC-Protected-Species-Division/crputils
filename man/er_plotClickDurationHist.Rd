@@ -16,7 +16,7 @@ creates a plot
 \description{
 Plot histogram of click durations of high SNR clicks only
 
-last updated: 31 July 2026
+last updated: 21 August 2026
 }
 \examples{
 \dontrun{
@@ -27,6 +27,9 @@ er_plotClickDurationHist(cl)
 }
 \seealso{
 \code{\link[=er_clickSummary]{er_clickSummary()}}
+\code{\link[=er_plotClickSNRHist]{er_plotClickSNRHist()}}
+\code{\link[=er_plotSpectra]{er_plotSpectra()}}
+\code{\link[=er_plotConcatSpec]{er_plotConcatSpec()}}
 }
 \author{
 Selene Fregosi \email{selene.fregosi@noaa.gov}

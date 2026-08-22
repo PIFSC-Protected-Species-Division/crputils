@@ -4,12 +4,11 @@
 \alias{er_plotSpectra}
 \title{er_plotSpectra}
 \usage{
-er_plotSpectra(cl, refSpecs = NULL, xLims = c(0, 100), snrThreshold = 15)
+er_plotSpectra(spec, refSpecs = NULL, xLims = c(0, 100), snrThreshold = 15)
 }
 \arguments{
-\item{cl}{list returned by clickSummary() that has element spec which is the
-output of PAMpal::calculateAverageSpectra and includes varaibles freq,
-avgSpec, avgNoise, allSpec, and snrVals}
+\item{spec}{output of \code{\link[PAMpal:calculateAverageSpectra]{PAMpal::calculateAverageSpectra()}} and includes
+variables freq, avgSpec, avgNoise, allSpec, and snrVals}
 
 \item{refSpecs}{optional argument with list of reference spectra to include
 as overlays in the plot}
@@ -24,7 +23,7 @@ clicks used in calculation of median spectrum. Default is 15}
 Plot spectra of all clicks - mean, median, noise, and any
 specified reference spectra
 
-last updated: 20 August 2026
+last updated: 21 August 2026
 }
 \examples{
 \dontrun{
@@ -36,4 +35,5 @@ er_plotSpectra(cl, refSpecs = refSpecs, xLims = c(0,100), snrThreshold = 15)
 \code{\link[=er_clickSummary]{er_clickSummary()}}
 \code{\link[=er_plotClickDurationHist]{er_plotClickDurationHist()}}
 \code{\link[=er_plotClickSNRHist]{er_plotClickSNRHist()}}
+\code{\link[=er_plotConcatSpec]{er_plotConcatSpec()}}
 }

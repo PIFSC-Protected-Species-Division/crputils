@@ -16,13 +16,14 @@ Default is 15 dB
 #' @seealso
 \code{\link[=er_clickSummary]{er_clickSummary()}}
 \code{\link[=er_plotClickDurationHist]{er_plotClickDurationHist()}}
-\code{\link[=er_plotSpectra]{er_plotSpectra()}}}
+\code{\link[=er_plotSpectra]{er_plotSpectra()}}
+\code{\link[=er_plotConcatSpec]{er_plotConcatSpec()}}}
 }
 \description{
 Plot histogram of click SNR for all clicks with a vertical
 dashed line at the specified cutoff
 
-last updated: 20 August 2026
+last updated: 21 August 2026
 }
 \examples{
 \dontrun{
