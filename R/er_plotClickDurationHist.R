@@ -2,7 +2,7 @@
 #'
 #' @description Plot histogram of click durations of high SNR clicks only
 #'
-#' last updated: 31 July 2026
+#' last updated: 21 August 2026
 #'
 #' @param cl list returned by er_clickSummary() containing elements
 #'   goodClicks (data frame with column duration) and nGoodClicks (count)
@@ -11,7 +11,11 @@
 #'
 #' @author Selene Fregosi \email{selene.fregosi@noaa.gov}
 #'
-#' @seealso [er_clickSummary()]
+#' @seealso
+#' [er_clickSummary()]
+#' [er_plotClickSNRHist()]
+#' [er_plotSpectra()]
+#' [er_plotConcatSpec()]
 #'
 #' @examples
 #' \dontrun{

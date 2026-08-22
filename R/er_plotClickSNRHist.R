@@ -3,7 +3,7 @@
 #' @description Plot histogram of click SNR for all clicks with a vertical
 #' dashed line at the specified cutoff
 #'
-#' last updated: 20 August 2026
+#' last updated: 21 August 2026
 #'
 #' @param cl list returned by clickSummary() that has element spec that has
 #' element snrVals
@@ -14,6 +14,7 @@
 #' [er_clickSummary()]
 #' [er_plotClickDurationHist()]
 #' [er_plotSpectra()]
+#' [er_plotConcatSpec()]
 #'
 #' @examples
 #' \dontrun{
