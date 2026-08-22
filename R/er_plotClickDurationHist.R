@@ -28,6 +28,7 @@
 #' @export
 
 er_plotClickDurationHist <- function(cl){
+
   subStr <- paste0('(high SNR clicks, n=', cl$nGoodClicks, ')')
   hist(cl$goodClicks$duration,
        breaks = seq(from = 0, to = max(cl$goodClicks$duration) + 100,
