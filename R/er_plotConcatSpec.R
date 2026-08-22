@@ -9,8 +9,8 @@
 #'
 #' @param spec output of [PAMpal::calculateAverageSpectra()] and includes
 #' variables freq, avgSpec, avgNoise, allSpec, and snrVals
-#' @param flim optional argument for frequency limits. Default is 0 to 100.
-#' Define with format \code{c(0, 100)}
+#' @param flim optional argument for frequency limits. Default is full frequency
+#' range of recordings. Define with format \code{c(0, 100)}, specify in kHz
 #' @param snrThreshold optional argument for SNR threshold (in dB) for filtering
 #' which clicks to include in plot. Default is 15
 #' @param sort logical flag to sort concatenated spectrogram by peak frequency.
@@ -57,30 +57,29 @@
 #' @importFrom grDevices hcl.colors
 #' @export
 
-er_plotConcatSpec <- function(spec, flim = c(0, 100), snrThreshold = 15,
+er_plotConcatSpec <- function(spec, flim = NULL, snrThreshold = 15,
                               sort = TRUE, filterfrom_khz = 0, filterto_khz = NULL,
                               q = 0.01, brightness = 0, contrast = 0,
-                              cmap = hcl.colors("YlOrRd", rev = TRUE),
+                              cmap = hcl.colors(30, "YlOrRd", rev = TRUE),
                               showBreaks = FALSE){
 
   # define some stuff
   unitLab <- "Frequency (kHz)"
   unitFactor <- 1/1000
   plotTitle <- "Concatenated Click Spectrogram"
-  maxZ <- 3
 
   # set frequency limits
   if (is.null(flim)) {
     plotFreq <- rep(TRUE, length(spec$freq))
   } else {
-    plotFreq <- spec$freq >= flim[1] & spec$freq <= flim[2]
+    plotFreq <- spec$freq >= flim[1]/unitFactor & spec$freq <= flim[2]/unitFactor
   }
   freqPretty <- pretty(seq(from = min(spec$freq[plotFreq]) *
                              unitFactor, to = max(spec$freq[plotFreq]) * unitFactor,
                            length.out = 5), n = 5)
 
   # get good clicks above snrThreshold
-  snrKeep <- snrVals >= snrThreshold
+  snrKeep <- spec$snrVals >= snrThreshold
 
   # set up plot
   plotMat <- spec$allSpec[plotFreq, snrKeep, drop = FALSE]
@@ -116,8 +115,8 @@ er_plotConcatSpec <- function(spec, flim = c(0, 100), snrThreshold = 15,
   }
 
   # set brightness/contrast if specified
-  plotMat <- doContrast(doBrightness(plotMat, brightness),
-                        contrast)
+  plotMat <- PAMpal:::doContrast(PAMpal:::doBrightness(plotMat, brightness),
+                                 contrast)
 
   # set colormap if specified
   if (is.function(cmap)) {
@@ -125,28 +124,29 @@ er_plotConcatSpec <- function(spec, flim = c(0, 100), snrThreshold = 15,
   }
 
   # actually plot it!
-  image(x = 1:ncol(plotMat), y = seq(from = min(freq[plotFreq] *
-                                                  unitFactor), to = max(freq[plotFreq] * unitFactor),
-                                     length.out = nrow(plotMat)), z = t(plotMat),
+  image(x = 1:ncol(plotMat),
+        y = seq(from = min(spec$freq[plotFreq]*unitFactor),
+                to = max(spec$freq[plotFreq]*unitFactor),
+                length.out = nrow(plotMat)), z = t(plotMat),
         xaxt = "n", yaxt = "n", ylab = unitLab, xlab = "Click Number",
-        useRaster = TRUE, col = cmap, breaks = seq(from = 0,
-                                                   to = 255, length.out = 31))
+        useRaster = TRUE, col = cmap,
+        breaks = seq(from = 0,to = 255, length.out = 31))
 
   # add labels
   title(plotTitle)
   xPretty <- pretty(1:ncol(plotMat), n = 5)
   axis(1, at = xPretty, labels = xPretty)
   axis(2, at = freqPretty, labels = freqPretty)
-  if (isTRUE(showBreaks) & isFALSE(sort) & length(evNum) >
-      1) {
-    evBreaks <- table(clickData$eventId)[sapply(events(ev),
-                                                id)]
-    evStarts <- cumsum(evBreaks)
-    for (b in 1:(length(evStarts) - 1)) {
-      lines(x = rep(evStarts[b] + 0.5, 2), y = c(0,
-                                                 max(freq[plotFreq] * unitFactor)), lwd = 2)
-    }
-  }
+  # if (isTRUE(showBreaks) & isFALSE(sort) & length(evNum) >
+  #     1) {
+  #   evBreaks <- table(clickData$eventId)[sapply(events(ev),
+  #                                               id)]
+  #   evStarts <- cumsum(evBreaks)
+  #   for (b in 1:(length(evStarts) - 1)) {
+  #     lines(x = rep(evStarts[b] + 0.5, 2), y = c(0,
+  #                                                max(freq[plotFreq] * unitFactor)), lwd = 2)
+  #   }
+  # }
 
 
 }
