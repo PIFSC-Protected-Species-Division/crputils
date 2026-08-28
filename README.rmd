@@ -29,8 +29,9 @@ Species Division.
 What?! It's an R package!!
 
 
-*Note: the name comes from the group formerly known as CRP (Cetacean Research 
-Program) and to avoid confusion I will not be renaming the package.*
+*Note: The name comes from the group formerly known as CRP (Cetacean Research 
+Program) and to avoid immediate usage confusion, I will not be renaming the
+package (for now).*
 
 ## Installation
 
