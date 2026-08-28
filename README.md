@@ -10,9 +10,14 @@ badge](https://pifsc-protected-species-division.r-universe.dev/badges/crputils)]
 
 <!-- badges: end -->
 
-Miscellaneous R utilities used by CRP
+Miscellaneous R utilities used by cetacean researchers in the PIFSC
+Protected Species Division.
 
 What?! It’s an R package!!
+
+*Note: the name comes from the group formerly known as CRP (Cetacean
+Research Program) and to avoid confusion I will not be renaming the
+package.*
 
 ## Installation
 
