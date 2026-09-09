@@ -54,7 +54,8 @@ er_plotSpectra <- function(spec, refSpecs = NULL, flim = NULL, snrThreshold = 15
        sub = paste0('Peak: ', peakFreq, 'kHz'))
 
   # add grid lines for frequency at 10 kHz intervals
-  for (iline in ((0:15)*10)) {
+  maxFreq <- max(spec$freq[plotFreq])*unitFactor
+  for (iline in seq(0, maxFreq, by = 10)) {
     lines(c(iline, iline), c(min(spec$avgSpec) - 20, 10), col="gray")}
 
   # add template spectra
